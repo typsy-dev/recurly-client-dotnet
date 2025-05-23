@@ -16,7 +16,7 @@ namespace Recurly.Errors
     [ExcludeFromCodeCoverage]
     public static class Factory
     {
-        public static RecurlyError Create(IRestResponse resp, string message, Recurly.Resources.ErrorMayHaveTransaction nestedError)
+        public static RecurlyError Create(RestResponse resp, string message, Recurly.Resources.ErrorMayHaveTransaction nestedError)
         {
             switch ((int)resp.StatusCode)
             {

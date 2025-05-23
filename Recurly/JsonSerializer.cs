@@ -2,7 +2,6 @@ using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using RestSharp;
-using RestSharp.Deserializers;
 using RestSharp.Serializers;
 
 namespace Recurly
@@ -32,7 +31,7 @@ namespace Recurly
             this.serializer = Newtonsoft.Json.JsonSerializer.Create(settings);
         }
 
-        public T Deserialize<T>(IRestResponse response)
+        public T Deserialize<T>(RestResponse response)
         {
             var content = response.Content;
             using (var stringReader = new StringReader(content))
@@ -64,5 +63,7 @@ namespace Recurly
                 return new Recurly.JsonSerializer();
             }
         }
+
+        ContentType ISerializer.ContentType { get => ContentType; set => ContentType = value; }
     }
 }

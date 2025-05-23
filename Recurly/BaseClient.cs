@@ -32,31 +32,31 @@ namespace Recurly
                 throw new ArgumentException($"apiKey is required. You passed in {apiKey}");
 
             ApiKey = apiKey;
-            RestClient = new RestClient();
-            RestClient.BaseUrl = new Uri(options.BaseUrl);
-            RestClient.Authenticator = new HttpBasicAuthenticator(ApiKey, "");
+            var restOptions = new RestClientOptions(options.BaseUrl);
+            restOptions.Authenticator = new HttpBasicAuthenticator(ApiKey, "");
 
             // AddDefaultHeader does not work for user-agent
             var libVersion = typeof(Recurly.Client).Assembly.GetName().Version;
-            RestClient.UserAgent = $"Recurly/{libVersion}; .NET";
+            restOptions.UserAgent = $"Recurly/{libVersion}; .NET";
 
-            Array.ForEach(BinaryTypes, contentType =>
-                RestClient.AddHandler(contentType, () => { return new Recurly.FileSerializer(); })
-            );
-            RestClient.AddHandler("application/json", () => { return new JsonSerializer(); });
+            //Array.ForEach(BinaryTypes, contentType =>
+            //    RestClient.AddHandler(contentType, () => { return new Recurly.FileSerializer(); })
+            //);
+            //RestClient.AddHandler("application/json", () => { return new JsonSerializer(); });
 
 
             // These are the default headers to send on every request
             RestClient.AddDefaultHeader("Accept", $"application/vnd.recurly.{ApiVersion}");
             RestClient.AddDefaultHeader("Content-Type", "application/json");
+            RestClient = new RestClient(restOptions);
         }
 
         /// <value>Timeout in milliseconds to be used for the request</value>
-        public int Timeout
-        {
-            get { return RestClient.Timeout; }
-            set { RestClient.Timeout = value; }
-        }
+        //public int Timeout
+        //{
+        //    get { return RestClient.Options.Timeout; }
+        //    set { RestClient.Timeout = value; }
+        //}
 
         public async Task<T> MakeRequestAsync<T>(Method method, string url, Request body = null, Dictionary<string, object> queryParams = null, RequestOptions options = null, CancellationToken cancellationToken = default(CancellationToken)) where T : Resource
         {
@@ -134,7 +134,7 @@ namespace Recurly
         public int GetResourceCount(string url, Dictionary<string, object> queryParams)
         {
             Debug.WriteLine($"Calling {url}");
-            var request = BuildRequest(Method.HEAD, url, null, queryParams);
+            var request = BuildRequest(Method.Head, url, null, queryParams);
             var resp = RestClient.Execute(request);
             this.HandleResponse(resp);
             var headers = resp.Headers.ToList();
@@ -149,19 +149,19 @@ namespace Recurly
             this.EventHandlers.Add(handler);
         }
 
-        [ExcludeFromCodeCoverage]
-        public void _SetApiUrl(string uri)
-        {
-            Console.WriteLine("[SECURITY WARNING] _SetApiUrl is for testing only and not supported in production.");
-            if (System.Environment.GetEnvironmentVariable("RECURLY_INSECURE") == "true")
-            {
-                this.RestClient.BaseUrl = new Uri(uri);
-            }
-            else
-            {
-                Console.WriteLine("ApiUrl not changed. To change, set the environment variable RECURLY_INSECURE to true");
-            }
-        }
+        //[ExcludeFromCodeCoverage]
+        //public void _SetApiUrl(string uri)
+        //{
+        //    Console.WriteLine("[SECURITY WARNING] _SetApiUrl is for testing only and not supported in production.");
+        //    if (System.Environment.GetEnvironmentVariable("RECURLY_INSECURE") == "true")
+        //    {
+        //        this.RestClient.op = new Uri(uri);
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("ApiUrl not changed. To change, set the environment variable RECURLY_INSECURE to true");
+        //    }
+        //}
 
         private RestRequest BuildRequest(Method method, string url, Request body = null, Dictionary<string, object> queryParams = null, RequestOptions options = null)
         {
@@ -176,7 +176,6 @@ namespace Recurly
             }
 
             var request = new RestRequest(url, method);
-            request.JsonSerializer = Recurly.JsonSerializer.Default;
             request.AddHeaders(options.Headers);
 
             // If we have a body, serialize it and add it to the request
@@ -188,7 +187,7 @@ namespace Recurly
             return request;
         }
 
-        private void HandleResponse(IRestResponse resp)
+        private void HandleResponse(RestResponse resp)
         {
             if (resp.Headers.Any(t => t.Name == "Recurly-Deprecated"))
             {

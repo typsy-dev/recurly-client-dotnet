@@ -38,7 +38,7 @@ namespace Recurly.Http
 
         public Response() { }
 
-        internal static Response Build(IRestResponse resp, Request request)
+        internal static Response Build(RestResponse resp, Request request)
         {
             // Map List<Parameter> to List<Header>
             var headers = new List<Header>();

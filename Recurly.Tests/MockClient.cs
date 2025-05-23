@@ -102,7 +102,7 @@ namespace Recurly.Tests
             var urlParams = new Dictionary<string, object> { { "resource_id", resourceId } };
             var queryParams = new Dictionary<string, object> { { "param_1", param1 }, { "param_2", param2 } };
             var url = this.InterpolatePath("/my_resources/{resource_id}", urlParams);
-            return MakeRequest<MyResource>(Method.GET, url, null, queryParams, options);
+            return MakeRequest<MyResource>(Method.Get, url, null, queryParams, options);
         }
 
         public Task<MyResource> GetResourceAsync(string resourceId, string param1, DateTime param2, RequestOptions options = null)
@@ -110,7 +110,7 @@ namespace Recurly.Tests
             var urlParams = new Dictionary<string, object> { { "resource_id", resourceId } };
             var queryParams = new Dictionary<string, object> { { "param_1", param1 }, { "param_2", param2 } };
             var url = this.InterpolatePath("/my_resources/{resource_id}", urlParams);
-            return MakeRequestAsync<MyResource>(Method.GET, url, null, queryParams, options);
+            return MakeRequestAsync<MyResource>(Method.Get, url, null, queryParams, options);
         }
     }
 }

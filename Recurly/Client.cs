@@ -54,7 +54,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "site_id", siteId } };
             var url = this.InterpolatePath("/sites/{site_id}", urlParams);
-            return MakeRequest<Site>(Method.GET, url, null, null, options);
+            return MakeRequest<Site>(Method.Get, url, null, null, options);
         }
 
 
@@ -71,7 +71,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "site_id", siteId } };
             var url = this.InterpolatePath("/sites/{site_id}", urlParams);
-            return MakeRequestAsync<Site>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Site>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -107,7 +107,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/accounts", urlParams);
-            return MakeRequest<Account>(Method.POST, url, body, null, options);
+            return MakeRequest<Account>(Method.Post, url, body, null, options);
         }
 
 
@@ -124,7 +124,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/accounts", urlParams);
-            return MakeRequestAsync<Account>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<Account>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -141,7 +141,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}", urlParams);
-            return MakeRequest<Account>(Method.GET, url, null, null, options);
+            return MakeRequest<Account>(Method.Get, url, null, null, options);
         }
 
 
@@ -158,7 +158,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}", urlParams);
-            return MakeRequestAsync<Account>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Account>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -175,7 +175,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}", urlParams);
-            return MakeRequest<Account>(Method.PUT, url, body, null, options);
+            return MakeRequest<Account>(Method.Put, url, body, null, options);
         }
 
 
@@ -192,7 +192,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}", urlParams);
-            return MakeRequestAsync<Account>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<Account>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -209,7 +209,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}", urlParams);
-            return MakeRequest<Account>(Method.DELETE, url, null, null, options);
+            return MakeRequest<Account>(Method.Delete, url, null, null, options);
         }
 
 
@@ -226,7 +226,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}", urlParams);
-            return MakeRequestAsync<Account>(Method.DELETE, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Account>(Method.Delete, url, null, null, options, cancellationToken);
         }
 
 
@@ -243,7 +243,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/acquisition", urlParams);
-            return MakeRequest<AccountAcquisition>(Method.GET, url, null, null, options);
+            return MakeRequest<AccountAcquisition>(Method.Get, url, null, null, options);
         }
 
 
@@ -260,7 +260,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/acquisition", urlParams);
-            return MakeRequestAsync<AccountAcquisition>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<AccountAcquisition>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -277,7 +277,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/acquisition", urlParams);
-            return MakeRequest<AccountAcquisition>(Method.PUT, url, body, null, options);
+            return MakeRequest<AccountAcquisition>(Method.Put, url, body, null, options);
         }
 
 
@@ -294,7 +294,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/acquisition", urlParams);
-            return MakeRequestAsync<AccountAcquisition>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<AccountAcquisition>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -311,7 +311,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/acquisition", urlParams);
-            return MakeRequest<EmptyResource>(Method.DELETE, url, null, null, options);
+            return MakeRequest<EmptyResource>(Method.Delete, url, null, null, options);
         }
 
 
@@ -328,7 +328,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/acquisition", urlParams);
-            return MakeRequestAsync<EmptyResource>(Method.DELETE, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<EmptyResource>(Method.Delete, url, null, null, options, cancellationToken);
         }
 
 
@@ -345,7 +345,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/reactivate", urlParams);
-            return MakeRequest<Account>(Method.PUT, url, null, null, options);
+            return MakeRequest<Account>(Method.Put, url, null, null, options);
         }
 
 
@@ -362,7 +362,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/reactivate", urlParams);
-            return MakeRequestAsync<Account>(Method.PUT, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Account>(Method.Put, url, null, null, options, cancellationToken);
         }
 
 
@@ -379,7 +379,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/balance", urlParams);
-            return MakeRequest<AccountBalance>(Method.GET, url, null, null, options);
+            return MakeRequest<AccountBalance>(Method.Get, url, null, null, options);
         }
 
 
@@ -396,7 +396,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/balance", urlParams);
-            return MakeRequestAsync<AccountBalance>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<AccountBalance>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -413,7 +413,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/billing_info", urlParams);
-            return MakeRequest<BillingInfo>(Method.GET, url, null, null, options);
+            return MakeRequest<BillingInfo>(Method.Get, url, null, null, options);
         }
 
 
@@ -430,7 +430,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/billing_info", urlParams);
-            return MakeRequestAsync<BillingInfo>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<BillingInfo>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -447,7 +447,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/billing_info", urlParams);
-            return MakeRequest<BillingInfo>(Method.PUT, url, body, null, options);
+            return MakeRequest<BillingInfo>(Method.Put, url, body, null, options);
         }
 
 
@@ -464,7 +464,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/billing_info", urlParams);
-            return MakeRequestAsync<BillingInfo>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<BillingInfo>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -481,7 +481,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/billing_info", urlParams);
-            return MakeRequest<EmptyResource>(Method.DELETE, url, null, null, options);
+            return MakeRequest<EmptyResource>(Method.Delete, url, null, null, options);
         }
 
 
@@ -498,7 +498,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/billing_info", urlParams);
-            return MakeRequestAsync<EmptyResource>(Method.DELETE, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<EmptyResource>(Method.Delete, url, null, null, options, cancellationToken);
         }
 
 
@@ -515,7 +515,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/billing_info/verify", urlParams);
-            return MakeRequest<Transaction>(Method.POST, url, body, null, options);
+            return MakeRequest<Transaction>(Method.Post, url, body, null, options);
         }
 
 
@@ -532,7 +532,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/billing_info/verify", urlParams);
-            return MakeRequestAsync<Transaction>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<Transaction>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -549,7 +549,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/billing_info/verify_cvv", urlParams);
-            return MakeRequest<Transaction>(Method.POST, url, body, null, options);
+            return MakeRequest<Transaction>(Method.Post, url, body, null, options);
         }
 
 
@@ -566,7 +566,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/billing_info/verify_cvv", urlParams);
-            return MakeRequestAsync<Transaction>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<Transaction>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -602,7 +602,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/billing_infos", urlParams);
-            return MakeRequest<BillingInfo>(Method.POST, url, body, null, options);
+            return MakeRequest<BillingInfo>(Method.Post, url, body, null, options);
         }
 
 
@@ -619,7 +619,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/billing_infos", urlParams);
-            return MakeRequestAsync<BillingInfo>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<BillingInfo>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -636,7 +636,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "billing_info_id", billingInfoId } };
             var url = this.InterpolatePath("/accounts/{account_id}/billing_infos/{billing_info_id}", urlParams);
-            return MakeRequest<BillingInfo>(Method.GET, url, null, null, options);
+            return MakeRequest<BillingInfo>(Method.Get, url, null, null, options);
         }
 
 
@@ -653,7 +653,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "billing_info_id", billingInfoId } };
             var url = this.InterpolatePath("/accounts/{account_id}/billing_infos/{billing_info_id}", urlParams);
-            return MakeRequestAsync<BillingInfo>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<BillingInfo>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -670,7 +670,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "billing_info_id", billingInfoId } };
             var url = this.InterpolatePath("/accounts/{account_id}/billing_infos/{billing_info_id}", urlParams);
-            return MakeRequest<BillingInfo>(Method.PUT, url, body, null, options);
+            return MakeRequest<BillingInfo>(Method.Put, url, body, null, options);
         }
 
 
@@ -687,7 +687,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "billing_info_id", billingInfoId } };
             var url = this.InterpolatePath("/accounts/{account_id}/billing_infos/{billing_info_id}", urlParams);
-            return MakeRequestAsync<BillingInfo>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<BillingInfo>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -704,7 +704,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "billing_info_id", billingInfoId } };
             var url = this.InterpolatePath("/accounts/{account_id}/billing_infos/{billing_info_id}", urlParams);
-            return MakeRequest<EmptyResource>(Method.DELETE, url, null, null, options);
+            return MakeRequest<EmptyResource>(Method.Delete, url, null, null, options);
         }
 
 
@@ -721,7 +721,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "billing_info_id", billingInfoId } };
             var url = this.InterpolatePath("/accounts/{account_id}/billing_infos/{billing_info_id}", urlParams);
-            return MakeRequestAsync<EmptyResource>(Method.DELETE, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<EmptyResource>(Method.Delete, url, null, null, options, cancellationToken);
         }
 
 
@@ -775,7 +775,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/coupon_redemptions/active", urlParams);
-            return MakeRequest<CouponRedemption>(Method.POST, url, body, null, options);
+            return MakeRequest<CouponRedemption>(Method.Post, url, body, null, options);
         }
 
 
@@ -792,7 +792,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/coupon_redemptions/active", urlParams);
-            return MakeRequestAsync<CouponRedemption>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<CouponRedemption>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -809,7 +809,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/coupon_redemptions/active", urlParams);
-            return MakeRequest<CouponRedemption>(Method.DELETE, url, null, null, options);
+            return MakeRequest<CouponRedemption>(Method.Delete, url, null, null, options);
         }
 
 
@@ -826,7 +826,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/coupon_redemptions/active", urlParams);
-            return MakeRequestAsync<CouponRedemption>(Method.DELETE, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<CouponRedemption>(Method.Delete, url, null, null, options, cancellationToken);
         }
 
 
@@ -880,7 +880,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/external_accounts", urlParams);
-            return MakeRequest<ExternalAccount>(Method.POST, url, body, null, options);
+            return MakeRequest<ExternalAccount>(Method.Post, url, body, null, options);
         }
 
 
@@ -897,7 +897,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/external_accounts", urlParams);
-            return MakeRequestAsync<ExternalAccount>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<ExternalAccount>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -914,7 +914,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "external_account_id", externalAccountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/external_accounts/{external_account_id}", urlParams);
-            return MakeRequest<ExternalAccount>(Method.GET, url, null, null, options);
+            return MakeRequest<ExternalAccount>(Method.Get, url, null, null, options);
         }
 
 
@@ -931,7 +931,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "external_account_id", externalAccountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/external_accounts/{external_account_id}", urlParams);
-            return MakeRequestAsync<ExternalAccount>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<ExternalAccount>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -948,7 +948,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "external_account_id", externalAccountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/external_accounts/{external_account_id}", urlParams);
-            return MakeRequest<ExternalAccount>(Method.PUT, url, body, null, options);
+            return MakeRequest<ExternalAccount>(Method.Put, url, body, null, options);
         }
 
 
@@ -965,7 +965,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "external_account_id", externalAccountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/external_accounts/{external_account_id}", urlParams);
-            return MakeRequestAsync<ExternalAccount>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<ExternalAccount>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -982,7 +982,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "external_account_id", externalAccountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/external_accounts/{external_account_id}", urlParams);
-            return MakeRequest<ExternalAccount>(Method.DELETE, url, null, null, options);
+            return MakeRequest<ExternalAccount>(Method.Delete, url, null, null, options);
         }
 
 
@@ -999,7 +999,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "external_account_id", externalAccountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/external_accounts/{external_account_id}", urlParams);
-            return MakeRequestAsync<ExternalAccount>(Method.DELETE, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<ExternalAccount>(Method.Delete, url, null, null, options, cancellationToken);
         }
 
 
@@ -1054,7 +1054,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/invoices", urlParams);
-            return MakeRequest<InvoiceCollection>(Method.POST, url, body, null, options);
+            return MakeRequest<InvoiceCollection>(Method.Post, url, body, null, options);
         }
 
 
@@ -1071,7 +1071,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/invoices", urlParams);
-            return MakeRequestAsync<InvoiceCollection>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<InvoiceCollection>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -1088,7 +1088,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/invoices/preview", urlParams);
-            return MakeRequest<InvoiceCollection>(Method.POST, url, body, null, options);
+            return MakeRequest<InvoiceCollection>(Method.Post, url, body, null, options);
         }
 
 
@@ -1105,7 +1105,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/invoices/preview", urlParams);
-            return MakeRequestAsync<InvoiceCollection>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<InvoiceCollection>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -1141,7 +1141,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/line_items", urlParams);
-            return MakeRequest<LineItem>(Method.POST, url, body, null, options);
+            return MakeRequest<LineItem>(Method.Post, url, body, null, options);
         }
 
 
@@ -1158,7 +1158,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/line_items", urlParams);
-            return MakeRequestAsync<LineItem>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<LineItem>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -1194,7 +1194,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "account_note_id", accountNoteId } };
             var url = this.InterpolatePath("/accounts/{account_id}/notes/{account_note_id}", urlParams);
-            return MakeRequest<AccountNote>(Method.GET, url, null, null, options);
+            return MakeRequest<AccountNote>(Method.Get, url, null, null, options);
         }
 
 
@@ -1211,7 +1211,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "account_note_id", accountNoteId } };
             var url = this.InterpolatePath("/accounts/{account_id}/notes/{account_note_id}", urlParams);
-            return MakeRequestAsync<AccountNote>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<AccountNote>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -1247,7 +1247,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/shipping_addresses", urlParams);
-            return MakeRequest<ShippingAddress>(Method.POST, url, body, null, options);
+            return MakeRequest<ShippingAddress>(Method.Post, url, body, null, options);
         }
 
 
@@ -1264,7 +1264,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/shipping_addresses", urlParams);
-            return MakeRequestAsync<ShippingAddress>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<ShippingAddress>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -1281,7 +1281,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "shipping_address_id", shippingAddressId } };
             var url = this.InterpolatePath("/accounts/{account_id}/shipping_addresses/{shipping_address_id}", urlParams);
-            return MakeRequest<ShippingAddress>(Method.GET, url, null, null, options);
+            return MakeRequest<ShippingAddress>(Method.Get, url, null, null, options);
         }
 
 
@@ -1298,7 +1298,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "shipping_address_id", shippingAddressId } };
             var url = this.InterpolatePath("/accounts/{account_id}/shipping_addresses/{shipping_address_id}", urlParams);
-            return MakeRequestAsync<ShippingAddress>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<ShippingAddress>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -1315,7 +1315,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "shipping_address_id", shippingAddressId } };
             var url = this.InterpolatePath("/accounts/{account_id}/shipping_addresses/{shipping_address_id}", urlParams);
-            return MakeRequest<ShippingAddress>(Method.PUT, url, body, null, options);
+            return MakeRequest<ShippingAddress>(Method.Put, url, body, null, options);
         }
 
 
@@ -1332,7 +1332,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "shipping_address_id", shippingAddressId } };
             var url = this.InterpolatePath("/accounts/{account_id}/shipping_addresses/{shipping_address_id}", urlParams);
-            return MakeRequestAsync<ShippingAddress>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<ShippingAddress>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -1349,7 +1349,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "shipping_address_id", shippingAddressId } };
             var url = this.InterpolatePath("/accounts/{account_id}/shipping_addresses/{shipping_address_id}", urlParams);
-            return MakeRequest<EmptyResource>(Method.DELETE, url, null, null, options);
+            return MakeRequest<EmptyResource>(Method.Delete, url, null, null, options);
         }
 
 
@@ -1366,7 +1366,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "shipping_address_id", shippingAddressId } };
             var url = this.InterpolatePath("/accounts/{account_id}/shipping_addresses/{shipping_address_id}", urlParams);
-            return MakeRequestAsync<EmptyResource>(Method.DELETE, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<EmptyResource>(Method.Delete, url, null, null, options, cancellationToken);
         }
 
 
@@ -1478,7 +1478,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/coupons", urlParams);
-            return MakeRequest<Coupon>(Method.POST, url, body, null, options);
+            return MakeRequest<Coupon>(Method.Post, url, body, null, options);
         }
 
 
@@ -1495,7 +1495,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/coupons", urlParams);
-            return MakeRequestAsync<Coupon>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<Coupon>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -1512,7 +1512,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "coupon_id", couponId } };
             var url = this.InterpolatePath("/coupons/{coupon_id}", urlParams);
-            return MakeRequest<Coupon>(Method.GET, url, null, null, options);
+            return MakeRequest<Coupon>(Method.Get, url, null, null, options);
         }
 
 
@@ -1529,7 +1529,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "coupon_id", couponId } };
             var url = this.InterpolatePath("/coupons/{coupon_id}", urlParams);
-            return MakeRequestAsync<Coupon>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Coupon>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -1546,7 +1546,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "coupon_id", couponId } };
             var url = this.InterpolatePath("/coupons/{coupon_id}", urlParams);
-            return MakeRequest<Coupon>(Method.PUT, url, body, null, options);
+            return MakeRequest<Coupon>(Method.Put, url, body, null, options);
         }
 
 
@@ -1563,7 +1563,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "coupon_id", couponId } };
             var url = this.InterpolatePath("/coupons/{coupon_id}", urlParams);
-            return MakeRequestAsync<Coupon>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<Coupon>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -1580,7 +1580,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "coupon_id", couponId } };
             var url = this.InterpolatePath("/coupons/{coupon_id}", urlParams);
-            return MakeRequest<Coupon>(Method.DELETE, url, null, null, options);
+            return MakeRequest<Coupon>(Method.Delete, url, null, null, options);
         }
 
 
@@ -1597,7 +1597,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "coupon_id", couponId } };
             var url = this.InterpolatePath("/coupons/{coupon_id}", urlParams);
-            return MakeRequestAsync<Coupon>(Method.DELETE, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Coupon>(Method.Delete, url, null, null, options, cancellationToken);
         }
 
 
@@ -1614,7 +1614,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "coupon_id", couponId } };
             var url = this.InterpolatePath("/coupons/{coupon_id}/generate", urlParams);
-            return MakeRequest<UniqueCouponCodeParams>(Method.POST, url, body, null, options);
+            return MakeRequest<UniqueCouponCodeParams>(Method.Post, url, body, null, options);
         }
 
 
@@ -1631,7 +1631,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "coupon_id", couponId } };
             var url = this.InterpolatePath("/coupons/{coupon_id}/generate", urlParams);
-            return MakeRequestAsync<UniqueCouponCodeParams>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<UniqueCouponCodeParams>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -1648,7 +1648,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "coupon_id", couponId } };
             var url = this.InterpolatePath("/coupons/{coupon_id}/restore", urlParams);
-            return MakeRequest<Coupon>(Method.PUT, url, body, null, options);
+            return MakeRequest<Coupon>(Method.Put, url, body, null, options);
         }
 
 
@@ -1665,7 +1665,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "coupon_id", couponId } };
             var url = this.InterpolatePath("/coupons/{coupon_id}/restore", urlParams);
-            return MakeRequestAsync<Coupon>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<Coupon>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -1720,7 +1720,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "credit_payment_id", creditPaymentId } };
             var url = this.InterpolatePath("/credit_payments/{credit_payment_id}", urlParams);
-            return MakeRequest<CreditPayment>(Method.GET, url, null, null, options);
+            return MakeRequest<CreditPayment>(Method.Get, url, null, null, options);
         }
 
 
@@ -1737,7 +1737,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "credit_payment_id", creditPaymentId } };
             var url = this.InterpolatePath("/credit_payments/{credit_payment_id}", urlParams);
-            return MakeRequestAsync<CreditPayment>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<CreditPayment>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -1773,7 +1773,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "custom_field_definition_id", customFieldDefinitionId } };
             var url = this.InterpolatePath("/custom_field_definitions/{custom_field_definition_id}", urlParams);
-            return MakeRequest<CustomFieldDefinition>(Method.GET, url, null, null, options);
+            return MakeRequest<CustomFieldDefinition>(Method.Get, url, null, null, options);
         }
 
 
@@ -1790,7 +1790,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "custom_field_definition_id", customFieldDefinitionId } };
             var url = this.InterpolatePath("/custom_field_definitions/{custom_field_definition_id}", urlParams);
-            return MakeRequestAsync<CustomFieldDefinition>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<CustomFieldDefinition>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -1807,7 +1807,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/general_ledger_accounts", urlParams);
-            return MakeRequest<GeneralLedgerAccount>(Method.POST, url, body, null, options);
+            return MakeRequest<GeneralLedgerAccount>(Method.Post, url, body, null, options);
         }
 
 
@@ -1824,7 +1824,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/general_ledger_accounts", urlParams);
-            return MakeRequestAsync<GeneralLedgerAccount>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<GeneralLedgerAccount>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -1860,7 +1860,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "general_ledger_account_id", generalLedgerAccountId } };
             var url = this.InterpolatePath("/general_ledger_accounts/{general_ledger_account_id}", urlParams);
-            return MakeRequest<GeneralLedgerAccount>(Method.GET, url, null, null, options);
+            return MakeRequest<GeneralLedgerAccount>(Method.Get, url, null, null, options);
         }
 
 
@@ -1877,7 +1877,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "general_ledger_account_id", generalLedgerAccountId } };
             var url = this.InterpolatePath("/general_ledger_accounts/{general_ledger_account_id}", urlParams);
-            return MakeRequestAsync<GeneralLedgerAccount>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<GeneralLedgerAccount>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -1894,7 +1894,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "general_ledger_account_id", generalLedgerAccountId } };
             var url = this.InterpolatePath("/general_ledger_accounts/{general_ledger_account_id}", urlParams);
-            return MakeRequest<GeneralLedgerAccount>(Method.PUT, url, body, null, options);
+            return MakeRequest<GeneralLedgerAccount>(Method.Put, url, body, null, options);
         }
 
 
@@ -1911,7 +1911,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "general_ledger_account_id", generalLedgerAccountId } };
             var url = this.InterpolatePath("/general_ledger_accounts/{general_ledger_account_id}", urlParams);
-            return MakeRequestAsync<GeneralLedgerAccount>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<GeneralLedgerAccount>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -1928,7 +1928,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "performance_obligation_id", performanceObligationId } };
             var url = this.InterpolatePath("/performance_obligations/{performance_obligation_id}", urlParams);
-            return MakeRequest<PerformanceObligation>(Method.GET, url, null, null, options);
+            return MakeRequest<PerformanceObligation>(Method.Get, url, null, null, options);
         }
 
 
@@ -1945,7 +1945,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "performance_obligation_id", performanceObligationId } };
             var url = this.InterpolatePath("/performance_obligations/{performance_obligation_id}", urlParams);
-            return MakeRequestAsync<PerformanceObligation>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<PerformanceObligation>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -2018,7 +2018,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/items", urlParams);
-            return MakeRequest<Item>(Method.POST, url, body, null, options);
+            return MakeRequest<Item>(Method.Post, url, body, null, options);
         }
 
 
@@ -2035,7 +2035,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/items", urlParams);
-            return MakeRequestAsync<Item>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<Item>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -2052,7 +2052,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "item_id", itemId } };
             var url = this.InterpolatePath("/items/{item_id}", urlParams);
-            return MakeRequest<Item>(Method.GET, url, null, null, options);
+            return MakeRequest<Item>(Method.Get, url, null, null, options);
         }
 
 
@@ -2069,7 +2069,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "item_id", itemId } };
             var url = this.InterpolatePath("/items/{item_id}", urlParams);
-            return MakeRequestAsync<Item>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Item>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -2086,7 +2086,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "item_id", itemId } };
             var url = this.InterpolatePath("/items/{item_id}", urlParams);
-            return MakeRequest<Item>(Method.PUT, url, body, null, options);
+            return MakeRequest<Item>(Method.Put, url, body, null, options);
         }
 
 
@@ -2103,7 +2103,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "item_id", itemId } };
             var url = this.InterpolatePath("/items/{item_id}", urlParams);
-            return MakeRequestAsync<Item>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<Item>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -2120,7 +2120,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "item_id", itemId } };
             var url = this.InterpolatePath("/items/{item_id}", urlParams);
-            return MakeRequest<Item>(Method.DELETE, url, null, null, options);
+            return MakeRequest<Item>(Method.Delete, url, null, null, options);
         }
 
 
@@ -2137,7 +2137,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "item_id", itemId } };
             var url = this.InterpolatePath("/items/{item_id}", urlParams);
-            return MakeRequestAsync<Item>(Method.DELETE, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Item>(Method.Delete, url, null, null, options, cancellationToken);
         }
 
 
@@ -2154,7 +2154,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "item_id", itemId } };
             var url = this.InterpolatePath("/items/{item_id}/reactivate", urlParams);
-            return MakeRequest<Item>(Method.PUT, url, null, null, options);
+            return MakeRequest<Item>(Method.Put, url, null, null, options);
         }
 
 
@@ -2171,7 +2171,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "item_id", itemId } };
             var url = this.InterpolatePath("/items/{item_id}/reactivate", urlParams);
-            return MakeRequestAsync<Item>(Method.PUT, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Item>(Method.Put, url, null, null, options, cancellationToken);
         }
 
 
@@ -2207,7 +2207,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/measured_units", urlParams);
-            return MakeRequest<MeasuredUnit>(Method.POST, url, body, null, options);
+            return MakeRequest<MeasuredUnit>(Method.Post, url, body, null, options);
         }
 
 
@@ -2224,7 +2224,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/measured_units", urlParams);
-            return MakeRequestAsync<MeasuredUnit>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<MeasuredUnit>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -2241,7 +2241,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "measured_unit_id", measuredUnitId } };
             var url = this.InterpolatePath("/measured_units/{measured_unit_id}", urlParams);
-            return MakeRequest<MeasuredUnit>(Method.GET, url, null, null, options);
+            return MakeRequest<MeasuredUnit>(Method.Get, url, null, null, options);
         }
 
 
@@ -2258,7 +2258,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "measured_unit_id", measuredUnitId } };
             var url = this.InterpolatePath("/measured_units/{measured_unit_id}", urlParams);
-            return MakeRequestAsync<MeasuredUnit>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<MeasuredUnit>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -2275,7 +2275,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "measured_unit_id", measuredUnitId } };
             var url = this.InterpolatePath("/measured_units/{measured_unit_id}", urlParams);
-            return MakeRequest<MeasuredUnit>(Method.PUT, url, body, null, options);
+            return MakeRequest<MeasuredUnit>(Method.Put, url, body, null, options);
         }
 
 
@@ -2292,7 +2292,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "measured_unit_id", measuredUnitId } };
             var url = this.InterpolatePath("/measured_units/{measured_unit_id}", urlParams);
-            return MakeRequestAsync<MeasuredUnit>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<MeasuredUnit>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -2309,7 +2309,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "measured_unit_id", measuredUnitId } };
             var url = this.InterpolatePath("/measured_units/{measured_unit_id}", urlParams);
-            return MakeRequest<MeasuredUnit>(Method.DELETE, url, null, null, options);
+            return MakeRequest<MeasuredUnit>(Method.Delete, url, null, null, options);
         }
 
 
@@ -2326,7 +2326,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "measured_unit_id", measuredUnitId } };
             var url = this.InterpolatePath("/measured_units/{measured_unit_id}", urlParams);
-            return MakeRequestAsync<MeasuredUnit>(Method.DELETE, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<MeasuredUnit>(Method.Delete, url, null, null, options, cancellationToken);
         }
 
 
@@ -2362,7 +2362,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/external_products", urlParams);
-            return MakeRequest<ExternalProduct>(Method.POST, url, body, null, options);
+            return MakeRequest<ExternalProduct>(Method.Post, url, body, null, options);
         }
 
 
@@ -2379,7 +2379,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/external_products", urlParams);
-            return MakeRequestAsync<ExternalProduct>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<ExternalProduct>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -2396,7 +2396,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_product_id", externalProductId } };
             var url = this.InterpolatePath("/external_products/{external_product_id}", urlParams);
-            return MakeRequest<ExternalProduct>(Method.GET, url, null, null, options);
+            return MakeRequest<ExternalProduct>(Method.Get, url, null, null, options);
         }
 
 
@@ -2413,7 +2413,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_product_id", externalProductId } };
             var url = this.InterpolatePath("/external_products/{external_product_id}", urlParams);
-            return MakeRequestAsync<ExternalProduct>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<ExternalProduct>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -2430,7 +2430,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_product_id", externalProductId } };
             var url = this.InterpolatePath("/external_products/{external_product_id}", urlParams);
-            return MakeRequest<ExternalProduct>(Method.PUT, url, body, null, options);
+            return MakeRequest<ExternalProduct>(Method.Put, url, body, null, options);
         }
 
 
@@ -2447,7 +2447,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_product_id", externalProductId } };
             var url = this.InterpolatePath("/external_products/{external_product_id}", urlParams);
-            return MakeRequestAsync<ExternalProduct>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<ExternalProduct>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -2464,7 +2464,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_product_id", externalProductId } };
             var url = this.InterpolatePath("/external_products/{external_product_id}", urlParams);
-            return MakeRequest<ExternalProduct>(Method.DELETE, url, null, null, options);
+            return MakeRequest<ExternalProduct>(Method.Delete, url, null, null, options);
         }
 
 
@@ -2481,7 +2481,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_product_id", externalProductId } };
             var url = this.InterpolatePath("/external_products/{external_product_id}", urlParams);
-            return MakeRequestAsync<ExternalProduct>(Method.DELETE, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<ExternalProduct>(Method.Delete, url, null, null, options, cancellationToken);
         }
 
 
@@ -2517,7 +2517,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_product_id", externalProductId } };
             var url = this.InterpolatePath("/external_products/{external_product_id}/external_product_references", urlParams);
-            return MakeRequest<ExternalProductReferenceMini>(Method.POST, url, body, null, options);
+            return MakeRequest<ExternalProductReferenceMini>(Method.Post, url, body, null, options);
         }
 
 
@@ -2534,7 +2534,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_product_id", externalProductId } };
             var url = this.InterpolatePath("/external_products/{external_product_id}/external_product_references", urlParams);
-            return MakeRequestAsync<ExternalProductReferenceMini>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<ExternalProductReferenceMini>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -2551,7 +2551,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_product_id", externalProductId }, { "external_product_reference_id", externalProductReferenceId } };
             var url = this.InterpolatePath("/external_products/{external_product_id}/external_product_references/{external_product_reference_id}", urlParams);
-            return MakeRequest<ExternalProductReferenceMini>(Method.GET, url, null, null, options);
+            return MakeRequest<ExternalProductReferenceMini>(Method.Get, url, null, null, options);
         }
 
 
@@ -2568,7 +2568,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_product_id", externalProductId }, { "external_product_reference_id", externalProductReferenceId } };
             var url = this.InterpolatePath("/external_products/{external_product_id}/external_product_references/{external_product_reference_id}", urlParams);
-            return MakeRequestAsync<ExternalProductReferenceMini>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<ExternalProductReferenceMini>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -2585,7 +2585,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_product_id", externalProductId }, { "external_product_reference_id", externalProductReferenceId } };
             var url = this.InterpolatePath("/external_products/{external_product_id}/external_product_references/{external_product_reference_id}", urlParams);
-            return MakeRequest<ExternalProductReferenceMini>(Method.DELETE, url, null, null, options);
+            return MakeRequest<ExternalProductReferenceMini>(Method.Delete, url, null, null, options);
         }
 
 
@@ -2602,7 +2602,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_product_id", externalProductId }, { "external_product_reference_id", externalProductReferenceId } };
             var url = this.InterpolatePath("/external_products/{external_product_id}/external_product_references/{external_product_reference_id}", urlParams);
-            return MakeRequestAsync<ExternalProductReferenceMini>(Method.DELETE, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<ExternalProductReferenceMini>(Method.Delete, url, null, null, options, cancellationToken);
         }
 
 
@@ -2619,7 +2619,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/external_subscriptions", urlParams);
-            return MakeRequest<ExternalSubscription>(Method.POST, url, body, null, options);
+            return MakeRequest<ExternalSubscription>(Method.Post, url, body, null, options);
         }
 
 
@@ -2636,7 +2636,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/external_subscriptions", urlParams);
-            return MakeRequestAsync<ExternalSubscription>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<ExternalSubscription>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -2672,7 +2672,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_subscription_id", externalSubscriptionId } };
             var url = this.InterpolatePath("/external_subscriptions/{external_subscription_id}", urlParams);
-            return MakeRequest<ExternalSubscription>(Method.GET, url, null, null, options);
+            return MakeRequest<ExternalSubscription>(Method.Get, url, null, null, options);
         }
 
 
@@ -2689,7 +2689,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_subscription_id", externalSubscriptionId } };
             var url = this.InterpolatePath("/external_subscriptions/{external_subscription_id}", urlParams);
-            return MakeRequestAsync<ExternalSubscription>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<ExternalSubscription>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -2706,7 +2706,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_subscription_id", externalSubscriptionId } };
             var url = this.InterpolatePath("/external_subscriptions/{external_subscription_id}", urlParams);
-            return MakeRequest<ExternalSubscription>(Method.PUT, url, body, null, options);
+            return MakeRequest<ExternalSubscription>(Method.Put, url, body, null, options);
         }
 
 
@@ -2723,7 +2723,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_subscription_id", externalSubscriptionId } };
             var url = this.InterpolatePath("/external_subscriptions/{external_subscription_id}", urlParams);
-            return MakeRequestAsync<ExternalSubscription>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<ExternalSubscription>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -2759,7 +2759,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_subscription_id", externalSubscriptionId } };
             var url = this.InterpolatePath("/external_subscriptions/{external_subscription_id}/external_invoices", urlParams);
-            return MakeRequest<ExternalInvoice>(Method.POST, url, body, null, options);
+            return MakeRequest<ExternalInvoice>(Method.Post, url, body, null, options);
         }
 
 
@@ -2776,7 +2776,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_subscription_id", externalSubscriptionId } };
             var url = this.InterpolatePath("/external_subscriptions/{external_subscription_id}/external_invoices", urlParams);
-            return MakeRequestAsync<ExternalInvoice>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<ExternalInvoice>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -2812,7 +2812,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}", urlParams);
-            return MakeRequest<Invoice>(Method.GET, url, null, null, options);
+            return MakeRequest<Invoice>(Method.Get, url, null, null, options);
         }
 
 
@@ -2829,7 +2829,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}", urlParams);
-            return MakeRequestAsync<Invoice>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Invoice>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -2846,7 +2846,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}", urlParams);
-            return MakeRequest<Invoice>(Method.PUT, url, body, null, options);
+            return MakeRequest<Invoice>(Method.Put, url, body, null, options);
         }
 
 
@@ -2863,7 +2863,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}", urlParams);
-            return MakeRequestAsync<Invoice>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<Invoice>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -2880,7 +2880,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}.pdf", urlParams);
-            return MakeRequest<BinaryFile>(Method.GET, url, null, null, options);
+            return MakeRequest<BinaryFile>(Method.Get, url, null, null, options);
         }
 
 
@@ -2897,7 +2897,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}.pdf", urlParams);
-            return MakeRequestAsync<BinaryFile>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<BinaryFile>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -2914,7 +2914,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}/apply_credit_balance", urlParams);
-            return MakeRequest<Invoice>(Method.PUT, url, null, null, options);
+            return MakeRequest<Invoice>(Method.Put, url, null, null, options);
         }
 
 
@@ -2931,7 +2931,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}/apply_credit_balance", urlParams);
-            return MakeRequestAsync<Invoice>(Method.PUT, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Invoice>(Method.Put, url, null, null, options, cancellationToken);
         }
 
 
@@ -2948,7 +2948,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}/collect", urlParams);
-            return MakeRequest<Invoice>(Method.PUT, url, body, null, options);
+            return MakeRequest<Invoice>(Method.Put, url, body, null, options);
         }
 
 
@@ -2965,7 +2965,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}/collect", urlParams);
-            return MakeRequestAsync<Invoice>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<Invoice>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -2982,7 +2982,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}/mark_failed", urlParams);
-            return MakeRequest<Invoice>(Method.PUT, url, null, null, options);
+            return MakeRequest<Invoice>(Method.Put, url, null, null, options);
         }
 
 
@@ -2999,7 +2999,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}/mark_failed", urlParams);
-            return MakeRequestAsync<Invoice>(Method.PUT, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Invoice>(Method.Put, url, null, null, options, cancellationToken);
         }
 
 
@@ -3016,7 +3016,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}/mark_successful", urlParams);
-            return MakeRequest<Invoice>(Method.PUT, url, null, null, options);
+            return MakeRequest<Invoice>(Method.Put, url, null, null, options);
         }
 
 
@@ -3033,7 +3033,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}/mark_successful", urlParams);
-            return MakeRequestAsync<Invoice>(Method.PUT, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Invoice>(Method.Put, url, null, null, options, cancellationToken);
         }
 
 
@@ -3050,7 +3050,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}/reopen", urlParams);
-            return MakeRequest<Invoice>(Method.PUT, url, null, null, options);
+            return MakeRequest<Invoice>(Method.Put, url, null, null, options);
         }
 
 
@@ -3067,7 +3067,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}/reopen", urlParams);
-            return MakeRequestAsync<Invoice>(Method.PUT, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Invoice>(Method.Put, url, null, null, options, cancellationToken);
         }
 
 
@@ -3084,7 +3084,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}/void", urlParams);
-            return MakeRequest<Invoice>(Method.PUT, url, null, null, options);
+            return MakeRequest<Invoice>(Method.Put, url, null, null, options);
         }
 
 
@@ -3101,7 +3101,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}/void", urlParams);
-            return MakeRequestAsync<Invoice>(Method.PUT, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Invoice>(Method.Put, url, null, null, options, cancellationToken);
         }
 
 
@@ -3118,7 +3118,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}/transactions", urlParams);
-            return MakeRequest<Transaction>(Method.POST, url, body, null, options);
+            return MakeRequest<Transaction>(Method.Post, url, body, null, options);
         }
 
 
@@ -3135,7 +3135,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}/transactions", urlParams);
-            return MakeRequestAsync<Transaction>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<Transaction>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -3208,7 +3208,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}/refund", urlParams);
-            return MakeRequest<Invoice>(Method.POST, url, body, null, options);
+            return MakeRequest<Invoice>(Method.Post, url, body, null, options);
         }
 
 
@@ -3225,7 +3225,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_id", invoiceId } };
             var url = this.InterpolatePath("/invoices/{invoice_id}/refund", urlParams);
-            return MakeRequestAsync<Invoice>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<Invoice>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -3261,7 +3261,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "line_item_id", lineItemId } };
             var url = this.InterpolatePath("/line_items/{line_item_id}", urlParams);
-            return MakeRequest<LineItem>(Method.GET, url, null, null, options);
+            return MakeRequest<LineItem>(Method.Get, url, null, null, options);
         }
 
 
@@ -3278,7 +3278,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "line_item_id", lineItemId } };
             var url = this.InterpolatePath("/line_items/{line_item_id}", urlParams);
-            return MakeRequestAsync<LineItem>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<LineItem>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -3295,7 +3295,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "line_item_id", lineItemId } };
             var url = this.InterpolatePath("/line_items/{line_item_id}", urlParams);
-            return MakeRequest<EmptyResource>(Method.DELETE, url, null, null, options);
+            return MakeRequest<EmptyResource>(Method.Delete, url, null, null, options);
         }
 
 
@@ -3312,7 +3312,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "line_item_id", lineItemId } };
             var url = this.InterpolatePath("/line_items/{line_item_id}", urlParams);
-            return MakeRequestAsync<EmptyResource>(Method.DELETE, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<EmptyResource>(Method.Delete, url, null, null, options, cancellationToken);
         }
 
 
@@ -3348,7 +3348,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/plans", urlParams);
-            return MakeRequest<Plan>(Method.POST, url, body, null, options);
+            return MakeRequest<Plan>(Method.Post, url, body, null, options);
         }
 
 
@@ -3365,7 +3365,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/plans", urlParams);
-            return MakeRequestAsync<Plan>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<Plan>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -3382,7 +3382,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "plan_id", planId } };
             var url = this.InterpolatePath("/plans/{plan_id}", urlParams);
-            return MakeRequest<Plan>(Method.GET, url, null, null, options);
+            return MakeRequest<Plan>(Method.Get, url, null, null, options);
         }
 
 
@@ -3399,7 +3399,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "plan_id", planId } };
             var url = this.InterpolatePath("/plans/{plan_id}", urlParams);
-            return MakeRequestAsync<Plan>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Plan>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -3416,7 +3416,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "plan_id", planId } };
             var url = this.InterpolatePath("/plans/{plan_id}", urlParams);
-            return MakeRequest<Plan>(Method.PUT, url, body, null, options);
+            return MakeRequest<Plan>(Method.Put, url, body, null, options);
         }
 
 
@@ -3433,7 +3433,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "plan_id", planId } };
             var url = this.InterpolatePath("/plans/{plan_id}", urlParams);
-            return MakeRequestAsync<Plan>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<Plan>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -3450,7 +3450,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "plan_id", planId } };
             var url = this.InterpolatePath("/plans/{plan_id}", urlParams);
-            return MakeRequest<Plan>(Method.DELETE, url, null, null, options);
+            return MakeRequest<Plan>(Method.Delete, url, null, null, options);
         }
 
 
@@ -3467,7 +3467,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "plan_id", planId } };
             var url = this.InterpolatePath("/plans/{plan_id}", urlParams);
-            return MakeRequestAsync<Plan>(Method.DELETE, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Plan>(Method.Delete, url, null, null, options, cancellationToken);
         }
 
 
@@ -3503,7 +3503,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "plan_id", planId } };
             var url = this.InterpolatePath("/plans/{plan_id}/add_ons", urlParams);
-            return MakeRequest<AddOn>(Method.POST, url, body, null, options);
+            return MakeRequest<AddOn>(Method.Post, url, body, null, options);
         }
 
 
@@ -3520,7 +3520,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "plan_id", planId } };
             var url = this.InterpolatePath("/plans/{plan_id}/add_ons", urlParams);
-            return MakeRequestAsync<AddOn>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<AddOn>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -3537,7 +3537,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "plan_id", planId }, { "add_on_id", addOnId } };
             var url = this.InterpolatePath("/plans/{plan_id}/add_ons/{add_on_id}", urlParams);
-            return MakeRequest<AddOn>(Method.GET, url, null, null, options);
+            return MakeRequest<AddOn>(Method.Get, url, null, null, options);
         }
 
 
@@ -3554,7 +3554,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "plan_id", planId }, { "add_on_id", addOnId } };
             var url = this.InterpolatePath("/plans/{plan_id}/add_ons/{add_on_id}", urlParams);
-            return MakeRequestAsync<AddOn>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<AddOn>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -3571,7 +3571,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "plan_id", planId }, { "add_on_id", addOnId } };
             var url = this.InterpolatePath("/plans/{plan_id}/add_ons/{add_on_id}", urlParams);
-            return MakeRequest<AddOn>(Method.PUT, url, body, null, options);
+            return MakeRequest<AddOn>(Method.Put, url, body, null, options);
         }
 
 
@@ -3588,7 +3588,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "plan_id", planId }, { "add_on_id", addOnId } };
             var url = this.InterpolatePath("/plans/{plan_id}/add_ons/{add_on_id}", urlParams);
-            return MakeRequestAsync<AddOn>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<AddOn>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -3605,7 +3605,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "plan_id", planId }, { "add_on_id", addOnId } };
             var url = this.InterpolatePath("/plans/{plan_id}/add_ons/{add_on_id}", urlParams);
-            return MakeRequest<AddOn>(Method.DELETE, url, null, null, options);
+            return MakeRequest<AddOn>(Method.Delete, url, null, null, options);
         }
 
 
@@ -3622,7 +3622,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "plan_id", planId }, { "add_on_id", addOnId } };
             var url = this.InterpolatePath("/plans/{plan_id}/add_ons/{add_on_id}", urlParams);
-            return MakeRequestAsync<AddOn>(Method.DELETE, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<AddOn>(Method.Delete, url, null, null, options, cancellationToken);
         }
 
 
@@ -3658,7 +3658,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "add_on_id", addOnId } };
             var url = this.InterpolatePath("/add_ons/{add_on_id}", urlParams);
-            return MakeRequest<AddOn>(Method.GET, url, null, null, options);
+            return MakeRequest<AddOn>(Method.Get, url, null, null, options);
         }
 
 
@@ -3675,7 +3675,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "add_on_id", addOnId } };
             var url = this.InterpolatePath("/add_ons/{add_on_id}", urlParams);
-            return MakeRequestAsync<AddOn>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<AddOn>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -3711,7 +3711,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/shipping_methods", urlParams);
-            return MakeRequest<ShippingMethod>(Method.POST, url, body, null, options);
+            return MakeRequest<ShippingMethod>(Method.Post, url, body, null, options);
         }
 
 
@@ -3728,7 +3728,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/shipping_methods", urlParams);
-            return MakeRequestAsync<ShippingMethod>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<ShippingMethod>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -3745,7 +3745,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "shipping_method_id", shippingMethodId } };
             var url = this.InterpolatePath("/shipping_methods/{shipping_method_id}", urlParams);
-            return MakeRequest<ShippingMethod>(Method.GET, url, null, null, options);
+            return MakeRequest<ShippingMethod>(Method.Get, url, null, null, options);
         }
 
 
@@ -3762,7 +3762,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "shipping_method_id", shippingMethodId } };
             var url = this.InterpolatePath("/shipping_methods/{shipping_method_id}", urlParams);
-            return MakeRequestAsync<ShippingMethod>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<ShippingMethod>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -3779,7 +3779,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "shipping_method_id", shippingMethodId } };
             var url = this.InterpolatePath("/shipping_methods/{shipping_method_id}", urlParams);
-            return MakeRequest<ShippingMethod>(Method.PUT, url, body, null, options);
+            return MakeRequest<ShippingMethod>(Method.Put, url, body, null, options);
         }
 
 
@@ -3796,7 +3796,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "shipping_method_id", shippingMethodId } };
             var url = this.InterpolatePath("/shipping_methods/{shipping_method_id}", urlParams);
-            return MakeRequestAsync<ShippingMethod>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<ShippingMethod>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -3813,7 +3813,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "shipping_method_id", shippingMethodId } };
             var url = this.InterpolatePath("/shipping_methods/{shipping_method_id}", urlParams);
-            return MakeRequest<ShippingMethod>(Method.DELETE, url, null, null, options);
+            return MakeRequest<ShippingMethod>(Method.Delete, url, null, null, options);
         }
 
 
@@ -3830,7 +3830,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "shipping_method_id", shippingMethodId } };
             var url = this.InterpolatePath("/shipping_methods/{shipping_method_id}", urlParams);
-            return MakeRequestAsync<ShippingMethod>(Method.DELETE, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<ShippingMethod>(Method.Delete, url, null, null, options, cancellationToken);
         }
 
 
@@ -3866,7 +3866,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/subscriptions", urlParams);
-            return MakeRequest<Subscription>(Method.POST, url, body, null, options);
+            return MakeRequest<Subscription>(Method.Post, url, body, null, options);
         }
 
 
@@ -3883,7 +3883,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/subscriptions", urlParams);
-            return MakeRequestAsync<Subscription>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<Subscription>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -3900,7 +3900,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}", urlParams);
-            return MakeRequest<Subscription>(Method.GET, url, null, null, options);
+            return MakeRequest<Subscription>(Method.Get, url, null, null, options);
         }
 
 
@@ -3917,7 +3917,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}", urlParams);
-            return MakeRequestAsync<Subscription>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Subscription>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -3934,7 +3934,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}", urlParams);
-            return MakeRequest<Subscription>(Method.PUT, url, body, null, options);
+            return MakeRequest<Subscription>(Method.Put, url, body, null, options);
         }
 
 
@@ -3951,7 +3951,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}", urlParams);
-            return MakeRequestAsync<Subscription>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<Subscription>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -3969,7 +3969,7 @@ namespace Recurly
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var queryParams = (optionalParams ?? new TerminateSubscriptionParams()).ToDictionary();
             var url = this.InterpolatePath("/subscriptions/{subscription_id}", urlParams);
-            return MakeRequest<Subscription>(Method.DELETE, url, null, queryParams, options);
+            return MakeRequest<Subscription>(Method.Delete, url, null, queryParams, options);
         }
 
 
@@ -3987,7 +3987,7 @@ namespace Recurly
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var queryParams = (optionalParams ?? new TerminateSubscriptionParams()).ToDictionary();
             var url = this.InterpolatePath("/subscriptions/{subscription_id}", urlParams);
-            return MakeRequestAsync<Subscription>(Method.DELETE, url, null, queryParams, options, cancellationToken);
+            return MakeRequestAsync<Subscription>(Method.Delete, url, null, queryParams, options, cancellationToken);
         }
 
 
@@ -4004,7 +4004,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/cancel", urlParams);
-            return MakeRequest<Subscription>(Method.PUT, url, body, null, options);
+            return MakeRequest<Subscription>(Method.Put, url, body, null, options);
         }
 
 
@@ -4021,7 +4021,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/cancel", urlParams);
-            return MakeRequestAsync<Subscription>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<Subscription>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -4038,7 +4038,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/reactivate", urlParams);
-            return MakeRequest<Subscription>(Method.PUT, url, null, null, options);
+            return MakeRequest<Subscription>(Method.Put, url, null, null, options);
         }
 
 
@@ -4055,7 +4055,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/reactivate", urlParams);
-            return MakeRequestAsync<Subscription>(Method.PUT, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Subscription>(Method.Put, url, null, null, options, cancellationToken);
         }
 
 
@@ -4072,7 +4072,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/pause", urlParams);
-            return MakeRequest<Subscription>(Method.PUT, url, body, null, options);
+            return MakeRequest<Subscription>(Method.Put, url, body, null, options);
         }
 
 
@@ -4089,7 +4089,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/pause", urlParams);
-            return MakeRequestAsync<Subscription>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<Subscription>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -4106,7 +4106,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/resume", urlParams);
-            return MakeRequest<Subscription>(Method.PUT, url, null, null, options);
+            return MakeRequest<Subscription>(Method.Put, url, null, null, options);
         }
 
 
@@ -4123,7 +4123,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/resume", urlParams);
-            return MakeRequestAsync<Subscription>(Method.PUT, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Subscription>(Method.Put, url, null, null, options, cancellationToken);
         }
 
 
@@ -4140,7 +4140,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/convert_trial", urlParams);
-            return MakeRequest<Subscription>(Method.PUT, url, null, null, options);
+            return MakeRequest<Subscription>(Method.Put, url, null, null, options);
         }
 
 
@@ -4157,7 +4157,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/convert_trial", urlParams);
-            return MakeRequestAsync<Subscription>(Method.PUT, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Subscription>(Method.Put, url, null, null, options, cancellationToken);
         }
 
 
@@ -4174,7 +4174,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/preview_renewal", urlParams);
-            return MakeRequest<InvoiceCollection>(Method.GET, url, null, null, options);
+            return MakeRequest<InvoiceCollection>(Method.Get, url, null, null, options);
         }
 
 
@@ -4191,7 +4191,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/preview_renewal", urlParams);
-            return MakeRequestAsync<InvoiceCollection>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<InvoiceCollection>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -4208,7 +4208,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/change", urlParams);
-            return MakeRequest<SubscriptionChange>(Method.GET, url, null, null, options);
+            return MakeRequest<SubscriptionChange>(Method.Get, url, null, null, options);
         }
 
 
@@ -4225,7 +4225,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/change", urlParams);
-            return MakeRequestAsync<SubscriptionChange>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<SubscriptionChange>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -4242,7 +4242,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/change", urlParams);
-            return MakeRequest<SubscriptionChange>(Method.POST, url, body, null, options);
+            return MakeRequest<SubscriptionChange>(Method.Post, url, body, null, options);
         }
 
 
@@ -4259,7 +4259,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/change", urlParams);
-            return MakeRequestAsync<SubscriptionChange>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<SubscriptionChange>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -4276,7 +4276,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/change", urlParams);
-            return MakeRequest<EmptyResource>(Method.DELETE, url, null, null, options);
+            return MakeRequest<EmptyResource>(Method.Delete, url, null, null, options);
         }
 
 
@@ -4293,7 +4293,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/change", urlParams);
-            return MakeRequestAsync<EmptyResource>(Method.DELETE, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<EmptyResource>(Method.Delete, url, null, null, options, cancellationToken);
         }
 
 
@@ -4310,7 +4310,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/change/preview", urlParams);
-            return MakeRequest<SubscriptionChange>(Method.POST, url, body, null, options);
+            return MakeRequest<SubscriptionChange>(Method.Post, url, body, null, options);
         }
 
 
@@ -4327,7 +4327,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/change/preview", urlParams);
-            return MakeRequestAsync<SubscriptionChange>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<SubscriptionChange>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -4420,7 +4420,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId }, { "add_on_id", addOnId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/add_ons/{add_on_id}/usage", urlParams);
-            return MakeRequest<Usage>(Method.POST, url, body, null, options);
+            return MakeRequest<Usage>(Method.Post, url, body, null, options);
         }
 
 
@@ -4437,7 +4437,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId }, { "add_on_id", addOnId } };
             var url = this.InterpolatePath("/subscriptions/{subscription_id}/add_ons/{add_on_id}/usage", urlParams);
-            return MakeRequestAsync<Usage>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<Usage>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -4454,7 +4454,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "usage_id", usageId } };
             var url = this.InterpolatePath("/usage/{usage_id}", urlParams);
-            return MakeRequest<Usage>(Method.GET, url, null, null, options);
+            return MakeRequest<Usage>(Method.Get, url, null, null, options);
         }
 
 
@@ -4471,7 +4471,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "usage_id", usageId } };
             var url = this.InterpolatePath("/usage/{usage_id}", urlParams);
-            return MakeRequestAsync<Usage>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Usage>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -4488,7 +4488,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "usage_id", usageId } };
             var url = this.InterpolatePath("/usage/{usage_id}", urlParams);
-            return MakeRequest<Usage>(Method.PUT, url, body, null, options);
+            return MakeRequest<Usage>(Method.Put, url, body, null, options);
         }
 
 
@@ -4505,7 +4505,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "usage_id", usageId } };
             var url = this.InterpolatePath("/usage/{usage_id}", urlParams);
-            return MakeRequestAsync<Usage>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<Usage>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -4522,7 +4522,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "usage_id", usageId } };
             var url = this.InterpolatePath("/usage/{usage_id}", urlParams);
-            return MakeRequest<EmptyResource>(Method.DELETE, url, null, null, options);
+            return MakeRequest<EmptyResource>(Method.Delete, url, null, null, options);
         }
 
 
@@ -4539,7 +4539,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "usage_id", usageId } };
             var url = this.InterpolatePath("/usage/{usage_id}", urlParams);
-            return MakeRequestAsync<EmptyResource>(Method.DELETE, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<EmptyResource>(Method.Delete, url, null, null, options, cancellationToken);
         }
 
 
@@ -4575,7 +4575,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "transaction_id", transactionId } };
             var url = this.InterpolatePath("/transactions/{transaction_id}", urlParams);
-            return MakeRequest<Transaction>(Method.GET, url, null, null, options);
+            return MakeRequest<Transaction>(Method.Get, url, null, null, options);
         }
 
 
@@ -4592,7 +4592,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "transaction_id", transactionId } };
             var url = this.InterpolatePath("/transactions/{transaction_id}", urlParams);
-            return MakeRequestAsync<Transaction>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<Transaction>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -4609,7 +4609,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "unique_coupon_code_id", uniqueCouponCodeId } };
             var url = this.InterpolatePath("/unique_coupon_codes/{unique_coupon_code_id}", urlParams);
-            return MakeRequest<UniqueCouponCode>(Method.GET, url, null, null, options);
+            return MakeRequest<UniqueCouponCode>(Method.Get, url, null, null, options);
         }
 
 
@@ -4626,7 +4626,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "unique_coupon_code_id", uniqueCouponCodeId } };
             var url = this.InterpolatePath("/unique_coupon_codes/{unique_coupon_code_id}", urlParams);
-            return MakeRequestAsync<UniqueCouponCode>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<UniqueCouponCode>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -4643,7 +4643,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "unique_coupon_code_id", uniqueCouponCodeId } };
             var url = this.InterpolatePath("/unique_coupon_codes/{unique_coupon_code_id}", urlParams);
-            return MakeRequest<UniqueCouponCode>(Method.DELETE, url, null, null, options);
+            return MakeRequest<UniqueCouponCode>(Method.Delete, url, null, null, options);
         }
 
 
@@ -4660,7 +4660,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "unique_coupon_code_id", uniqueCouponCodeId } };
             var url = this.InterpolatePath("/unique_coupon_codes/{unique_coupon_code_id}", urlParams);
-            return MakeRequestAsync<UniqueCouponCode>(Method.DELETE, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<UniqueCouponCode>(Method.Delete, url, null, null, options, cancellationToken);
         }
 
 
@@ -4677,7 +4677,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "unique_coupon_code_id", uniqueCouponCodeId } };
             var url = this.InterpolatePath("/unique_coupon_codes/{unique_coupon_code_id}/restore", urlParams);
-            return MakeRequest<UniqueCouponCode>(Method.PUT, url, null, null, options);
+            return MakeRequest<UniqueCouponCode>(Method.Put, url, null, null, options);
         }
 
 
@@ -4694,7 +4694,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "unique_coupon_code_id", uniqueCouponCodeId } };
             var url = this.InterpolatePath("/unique_coupon_codes/{unique_coupon_code_id}/restore", urlParams);
-            return MakeRequestAsync<UniqueCouponCode>(Method.PUT, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<UniqueCouponCode>(Method.Put, url, null, null, options, cancellationToken);
         }
 
 
@@ -4711,7 +4711,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/purchases", urlParams);
-            return MakeRequest<InvoiceCollection>(Method.POST, url, body, null, options);
+            return MakeRequest<InvoiceCollection>(Method.Post, url, body, null, options);
         }
 
 
@@ -4728,7 +4728,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/purchases", urlParams);
-            return MakeRequestAsync<InvoiceCollection>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<InvoiceCollection>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -4745,7 +4745,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/purchases/preview", urlParams);
-            return MakeRequest<InvoiceCollection>(Method.POST, url, body, null, options);
+            return MakeRequest<InvoiceCollection>(Method.Post, url, body, null, options);
         }
 
 
@@ -4762,7 +4762,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/purchases/preview", urlParams);
-            return MakeRequestAsync<InvoiceCollection>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<InvoiceCollection>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -4779,7 +4779,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/purchases/pending", urlParams);
-            return MakeRequest<InvoiceCollection>(Method.POST, url, body, null, options);
+            return MakeRequest<InvoiceCollection>(Method.Post, url, body, null, options);
         }
 
 
@@ -4796,7 +4796,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/purchases/pending", urlParams);
-            return MakeRequestAsync<InvoiceCollection>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<InvoiceCollection>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -4813,7 +4813,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/purchases/authorize", urlParams);
-            return MakeRequest<InvoiceCollection>(Method.POST, url, body, null, options);
+            return MakeRequest<InvoiceCollection>(Method.Post, url, body, null, options);
         }
 
 
@@ -4830,7 +4830,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/purchases/authorize", urlParams);
-            return MakeRequestAsync<InvoiceCollection>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<InvoiceCollection>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -4847,7 +4847,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "transaction_id", transactionId } };
             var url = this.InterpolatePath("/purchases/{transaction_id}/capture", urlParams);
-            return MakeRequest<InvoiceCollection>(Method.POST, url, null, null, options);
+            return MakeRequest<InvoiceCollection>(Method.Post, url, null, null, options);
         }
 
 
@@ -4864,7 +4864,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "transaction_id", transactionId } };
             var url = this.InterpolatePath("/purchases/{transaction_id}/capture", urlParams);
-            return MakeRequestAsync<InvoiceCollection>(Method.POST, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<InvoiceCollection>(Method.Post, url, null, null, options, cancellationToken);
         }
 
 
@@ -4881,7 +4881,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "transaction_id", transactionId } };
             var url = this.InterpolatePath("/purchases/{transaction_id}/cancel/", urlParams);
-            return MakeRequest<InvoiceCollection>(Method.POST, url, null, null, options);
+            return MakeRequest<InvoiceCollection>(Method.Post, url, null, null, options);
         }
 
 
@@ -4898,7 +4898,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "transaction_id", transactionId } };
             var url = this.InterpolatePath("/purchases/{transaction_id}/cancel/", urlParams);
-            return MakeRequestAsync<InvoiceCollection>(Method.POST, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<InvoiceCollection>(Method.Post, url, null, null, options, cancellationToken);
         }
 
 
@@ -4915,7 +4915,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/export_dates", urlParams);
-            return MakeRequest<ExportDates>(Method.GET, url, null, null, options);
+            return MakeRequest<ExportDates>(Method.Get, url, null, null, options);
         }
 
 
@@ -4932,7 +4932,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/export_dates", urlParams);
-            return MakeRequestAsync<ExportDates>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<ExportDates>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -4949,7 +4949,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "export_date", exportDate } };
             var url = this.InterpolatePath("/export_dates/{export_date}/export_files", urlParams);
-            return MakeRequest<ExportFiles>(Method.GET, url, null, null, options);
+            return MakeRequest<ExportFiles>(Method.Get, url, null, null, options);
         }
 
 
@@ -4966,7 +4966,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "export_date", exportDate } };
             var url = this.InterpolatePath("/export_dates/{export_date}/export_files", urlParams);
-            return MakeRequestAsync<ExportFiles>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<ExportFiles>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -5002,7 +5002,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "dunning_campaign_id", dunningCampaignId } };
             var url = this.InterpolatePath("/dunning_campaigns/{dunning_campaign_id}", urlParams);
-            return MakeRequest<DunningCampaign>(Method.GET, url, null, null, options);
+            return MakeRequest<DunningCampaign>(Method.Get, url, null, null, options);
         }
 
 
@@ -5019,7 +5019,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "dunning_campaign_id", dunningCampaignId } };
             var url = this.InterpolatePath("/dunning_campaigns/{dunning_campaign_id}", urlParams);
-            return MakeRequestAsync<DunningCampaign>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<DunningCampaign>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -5036,7 +5036,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "dunning_campaign_id", dunningCampaignId } };
             var url = this.InterpolatePath("/dunning_campaigns/{dunning_campaign_id}/bulk_update", urlParams);
-            return MakeRequest<DunningCampaignsBulkUpdateResponse>(Method.PUT, url, body, null, options);
+            return MakeRequest<DunningCampaignsBulkUpdateResponse>(Method.Put, url, body, null, options);
         }
 
 
@@ -5053,7 +5053,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "dunning_campaign_id", dunningCampaignId } };
             var url = this.InterpolatePath("/dunning_campaigns/{dunning_campaign_id}/bulk_update", urlParams);
-            return MakeRequestAsync<DunningCampaignsBulkUpdateResponse>(Method.PUT, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<DunningCampaignsBulkUpdateResponse>(Method.Put, url, body, null, options, cancellationToken);
         }
 
 
@@ -5089,7 +5089,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_template_id", invoiceTemplateId } };
             var url = this.InterpolatePath("/invoice_templates/{invoice_template_id}", urlParams);
-            return MakeRequest<InvoiceTemplate>(Method.GET, url, null, null, options);
+            return MakeRequest<InvoiceTemplate>(Method.Get, url, null, null, options);
         }
 
 
@@ -5106,7 +5106,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "invoice_template_id", invoiceTemplateId } };
             var url = this.InterpolatePath("/invoice_templates/{invoice_template_id}", urlParams);
-            return MakeRequestAsync<InvoiceTemplate>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<InvoiceTemplate>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -5142,7 +5142,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_invoice_id", externalInvoiceId } };
             var url = this.InterpolatePath("/external_invoices/{external_invoice_id}", urlParams);
-            return MakeRequest<ExternalInvoice>(Method.GET, url, null, null, options);
+            return MakeRequest<ExternalInvoice>(Method.Get, url, null, null, options);
         }
 
 
@@ -5159,7 +5159,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_invoice_id", externalInvoiceId } };
             var url = this.InterpolatePath("/external_invoices/{external_invoice_id}", urlParams);
-            return MakeRequestAsync<ExternalInvoice>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<ExternalInvoice>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -5195,7 +5195,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_subscription_id", externalSubscriptionId }, { "external_payment_phase_id", externalPaymentPhaseId } };
             var url = this.InterpolatePath("/external_subscriptions/{external_subscription_id}/external_payment_phases/{external_payment_phase_id}", urlParams);
-            return MakeRequest<ExternalPaymentPhase>(Method.GET, url, null, null, options);
+            return MakeRequest<ExternalPaymentPhase>(Method.Get, url, null, null, options);
         }
 
 
@@ -5212,7 +5212,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "external_subscription_id", externalSubscriptionId }, { "external_payment_phase_id", externalPaymentPhaseId } };
             var url = this.InterpolatePath("/external_subscriptions/{external_subscription_id}/external_payment_phases/{external_payment_phase_id}", urlParams);
-            return MakeRequestAsync<ExternalPaymentPhase>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<ExternalPaymentPhase>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -5267,7 +5267,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "business_entity_id", businessEntityId } };
             var url = this.InterpolatePath("/business_entities/{business_entity_id}", urlParams);
-            return MakeRequest<BusinessEntity>(Method.GET, url, null, null, options);
+            return MakeRequest<BusinessEntity>(Method.Get, url, null, null, options);
         }
 
 
@@ -5284,7 +5284,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "business_entity_id", businessEntityId } };
             var url = this.InterpolatePath("/business_entities/{business_entity_id}", urlParams);
-            return MakeRequestAsync<BusinessEntity>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<BusinessEntity>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -5337,7 +5337,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/gift_cards", urlParams);
-            return MakeRequest<GiftCard>(Method.POST, url, body, null, options);
+            return MakeRequest<GiftCard>(Method.Post, url, body, null, options);
         }
 
 
@@ -5354,7 +5354,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/gift_cards", urlParams);
-            return MakeRequestAsync<GiftCard>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<GiftCard>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -5371,7 +5371,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "gift_card_id", giftCardId } };
             var url = this.InterpolatePath("/gift_cards/{gift_card_id}", urlParams);
-            return MakeRequest<GiftCard>(Method.GET, url, null, null, options);
+            return MakeRequest<GiftCard>(Method.Get, url, null, null, options);
         }
 
 
@@ -5388,7 +5388,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "gift_card_id", giftCardId } };
             var url = this.InterpolatePath("/gift_cards/{gift_card_id}", urlParams);
-            return MakeRequestAsync<GiftCard>(Method.GET, url, null, null, options, cancellationToken);
+            return MakeRequestAsync<GiftCard>(Method.Get, url, null, null, options, cancellationToken);
         }
 
 
@@ -5405,7 +5405,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/gift_cards/preview", urlParams);
-            return MakeRequest<GiftCard>(Method.POST, url, body, null, options);
+            return MakeRequest<GiftCard>(Method.Post, url, body, null, options);
         }
 
 
@@ -5422,7 +5422,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { };
             var url = this.InterpolatePath("/gift_cards/preview", urlParams);
-            return MakeRequestAsync<GiftCard>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<GiftCard>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 
@@ -5439,7 +5439,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "redemption_code", redemptionCode } };
             var url = this.InterpolatePath("/gift_cards/{redemption_code}/redeem", urlParams);
-            return MakeRequest<GiftCard>(Method.POST, url, body, null, options);
+            return MakeRequest<GiftCard>(Method.Post, url, body, null, options);
         }
 
 
@@ -5456,7 +5456,7 @@ namespace Recurly
         {
             var urlParams = new Dictionary<string, object> { { "redemption_code", redemptionCode } };
             var url = this.InterpolatePath("/gift_cards/{redemption_code}/redeem", urlParams);
-            return MakeRequestAsync<GiftCard>(Method.POST, url, body, null, options, cancellationToken);
+            return MakeRequestAsync<GiftCard>(Method.Post, url, body, null, options, cancellationToken);
         }
 
 

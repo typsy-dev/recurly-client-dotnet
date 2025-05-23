@@ -1,12 +1,12 @@
 using System;
 using RestSharp;
-using RestSharp.Deserializers;
+using RestSharp.Serializers;
 
 namespace Recurly
 {
     public class FileSerializer : IDeserializer
     {
-        public T Deserialize<T>(IRestResponse response)
+        public T Deserialize<T>(RestResponse response)
         {
             var binaryFile = new Recurly.Resources.BinaryFile();
             binaryFile.Data = response.RawBytes;
