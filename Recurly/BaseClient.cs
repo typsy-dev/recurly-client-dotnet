@@ -8,9 +8,11 @@ using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
-
+using RestSharp.Serializers.NewtonsoftJson;
 [assembly: InternalsVisibleTo("Recurly.Tests")]
 
 namespace Recurly
@@ -44,11 +46,23 @@ namespace Recurly
             //);
             //RestClient.AddHandler("application/json", () => { return new JsonSerializer(); });
 
-
+            var contractResolver = new DefaultContractResolver
+            {
+                NamingStrategy = new SnakeCaseNamingStrategy()
+            };
+            var settings = new JsonSerializerSettings()
+            {
+                ContractResolver = contractResolver,
+                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore,
+                DateFormatHandling = DateFormatHandling.IsoDateFormat,
+                DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+                //Formatting = Formatting.Indented,
+            };
             // These are the default headers to send on every request
+            RestClient = new RestClient(restOptions, configureSerialization: s => s.UseNewtonsoftJson(settings).UseSerializer(() => new FileSerializer()));
             RestClient.AddDefaultHeader("Accept", $"application/vnd.recurly.{ApiVersion}");
             RestClient.AddDefaultHeader("Content-Type", "application/json");
-            RestClient = new RestClient(restOptions);
         }
 
         /// <value>Timeout in milliseconds to be used for the request</value>
