@@ -229,7 +229,7 @@ namespace Recurly
             if (resp.ErrorException != null)
             {
                 var err = JsonConvert.DeserializeObject<ErrorBase>(resp.Content);
-                var message = resp.ErrorMessage + err.error.message;
+                var message = resp.ErrorMessage + err?.error?.message;
                 if (resp.Headers.Any(t => t.Name == "X-Request-ID"))
                 {
                     var requestId = resp.Headers.ToList().Find(x => x.Name == "X-Request-ID").Value.ToString();
