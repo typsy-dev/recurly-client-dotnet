@@ -228,7 +228,8 @@ namespace Recurly
             // has likely occurred
             if (resp.ErrorException != null)
             {
-                var message = resp.ErrorMessage;
+                var err = JsonConvert.DeserializeObject<ErrorBase>(resp.Content);
+                var message = resp.ErrorMessage + err.error.message;
                 if (resp.Headers.Any(t => t.Name == "X-Request-ID"))
                 {
                     var requestId = resp.Headers.ToList().Find(x => x.Name == "X-Request-ID").Value.ToString();
@@ -282,4 +283,23 @@ namespace Recurly
             return regex.Replace(path, m => urlParams[m.Groups[1].Value].ToString().Replace("/", "%2F"));
         }
     }
+    public class Error
+    {
+        public string type { get; set; }
+        public string message { get; set; }
+        public List<Param> @params { get; set; }
+    }
+
+    public class Param
+    {
+        public string param { get; set; }
+        public string message { get; set; }
+    }
+
+    public class ErrorBase
+    {
+        public Error error { get; set; }
+    }
+
+
 }
