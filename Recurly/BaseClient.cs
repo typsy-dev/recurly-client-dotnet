@@ -228,18 +228,22 @@ namespace Recurly
             // has likely occurred
             if (resp.ErrorException != null)
             {
-                var err = JsonConvert.DeserializeObject<ErrorBase>(resp.Content);
-                var message = resp.ErrorMessage + err?.error?.message;
-                if (resp.Headers.Any(t => t.Name == "X-Request-ID"))
-                {
-                    var requestId = resp.Headers.ToList().Find(x => x.Name == "X-Request-ID").Value.ToString();
-                    message += $" Recurly Request Id: {requestId}";
-                }
-                var error = new Recurly.Resources.ErrorMayHaveTransaction()
-                {
-                    Message = message
-                };
-                throw Errors.Factory.Create(resp, message, error);
+                //var err = JsonConvert.DeserializeObject<ErrorBase>(resp.Content);
+                //var message = resp.ErrorMessage + err?.error?.message;
+                //if (resp.Headers.Any(t => t.Name == "X-Request-ID"))
+                //{
+                //    var requestId = resp.Headers.ToList().Find(x => x.Name == "X-Request-ID").Value.ToString();
+                //    message += $" Recurly Request Id: {requestId}";
+                //}
+                //var error = new Recurly.Resources.ErrorMayHaveTransaction()
+                //{
+                //    Message = message
+                //};
+                //throw Errors.Factory.Create(resp, message, error);
+                var serializer = Recurly.JsonSerializer.Default;
+                var err = serializer.Deserialize<Errors.ApiErrorWrapper>(resp).Error;
+                var ex = Errors.Factory.Create(err);
+                throw ex;
             }
             else if (status < 200 || status >= 300)
             {
@@ -288,6 +292,7 @@ namespace Recurly
         public string type { get; set; }
         public string message { get; set; }
         public List<Param> @params { get; set; }
+        public TransactionError transaction_error { get; set; }
     }
 
     public class Param
@@ -301,5 +306,16 @@ namespace Recurly
         public Error error { get; set; }
     }
 
-
+    public class TransactionError
+    {
+        public string @object { get; set; }
+        public string transaction_id { get; set; }
+        public string category { get; set; }
+        public string code { get; set; }
+        public object decline_code { get; set; }
+        public string message { get; set; }
+        public string merchant_advice { get; set; }
+        public string three_d_secure_action_token_id { get; set; }
+        public object fraud_info { get; set; }
+    }
 }
