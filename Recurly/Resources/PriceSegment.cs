@@ -12,24 +12,20 @@ using Newtonsoft.Json;
 namespace Recurly.Resources
 {
     [ExcludeFromCodeCoverage]
-    public class InvoiceCollection : Resource
+    public class PriceSegment : Resource
     {
 
+        /// <value>The price segment code, e.g. `my-price-segment`.</value>
+        [JsonProperty("code")]
+        public string Code { get; set; }
 
-        [JsonProperty("charge_invoice")]
-        public Invoice ChargeInvoice { get; set; }
-
-        /// <value>Credit invoices</value>
-        [JsonProperty("credit_invoices")]
-        public List<Invoice> CreditInvoices { get; set; }
+        /// <value>The price segment ID, e.g. `e28zov4fw0v2`.</value>
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
         /// <value>Object type</value>
         [JsonProperty("object")]
         public string Object { get; set; }
-
-        /// <value>Verification transactions (used for free trial payment method validation)</value>
-        [JsonProperty("verification_transactions")]
-        public List<Transaction> VerificationTransactions { get; set; }
 
     }
 }

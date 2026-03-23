@@ -27,6 +27,15 @@ namespace Recurly.Resources
         [JsonProperty("bulk")]
         public bool? Bulk { get; set; }
 
+        /// <value>
+        /// Controls whether credit invoices are automatically applied to new invoices.
+        /// The `mode` field determines the application behavior. When mode is `all`,
+        /// the optional `allowed_origins` array can restrict which credit invoice origins
+        /// are applied.
+        /// </value>
+        [JsonProperty("credit_application_policy")]
+        public CreditApplicationPolicy CreditApplicationPolicy { get; set; }
+
         /// <value>The custom fields will only be altered when they are included in a request. Sending an empty array will not remove any existing values. To remove a field send the name with a null or empty value.</value>
         [JsonProperty("custom_fields")]
         public List<CustomField> CustomFields { get; set; }
@@ -42,6 +51,14 @@ namespace Recurly.Resources
         /// <value>Plan ID</value>
         [JsonProperty("plan_id")]
         public string PlanId { get; set; }
+
+        /// <value>The price segment ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For requests, the code can also be used. Use prefix `code-`, e.g. `code-gold`.</value>
+        [JsonProperty("price_segment_id")]
+        public string PriceSegmentId { get; set; }
+
+        /// <value>Allows you to control how any resulting charges will be calculated and prorated.</value>
+        [JsonProperty("proration_settings")]
+        public SubscriptionCreateProrationSettings ProrationSettings { get; set; }
 
         /// <value>Optionally override the default quantity of 1.</value>
         [JsonProperty("quantity")]

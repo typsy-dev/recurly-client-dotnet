@@ -44,6 +44,18 @@ namespace Recurly
 
         };
 
+        public enum SubscriptionCreateProrationSettingsCharge
+        {
+            Undefined = 0,
+
+            [EnumMember(Value = "full_amount")]
+            FullAmount,
+
+            [EnumMember(Value = "prorated_amount")]
+            ProratedAmount,
+
+        };
+
         public enum RelatedType
         {
             Undefined = 0,
@@ -239,6 +251,21 @@ namespace Recurly
 
             [EnumMember(Value = "credit")]
             Credit,
+
+        };
+
+        public enum VertexTransactionType
+        {
+            Undefined = 0,
+
+            [EnumMember(Value = "sale")]
+            Sale,
+
+            [EnumMember(Value = "rental")]
+            Rental,
+
+            [EnumMember(Value = "lease")]
+            Lease,
 
         };
 
@@ -882,6 +909,9 @@ namespace Recurly
             [EnumMember(Value = "pending")]
             Pending,
 
+            [EnumMember(Value = "processing")]
+            Processing,
+
             [EnumMember(Value = "past_due")]
             PastDue,
 
@@ -890,6 +920,15 @@ namespace Recurly
 
             [EnumMember(Value = "failed")]
             Failed,
+
+            [EnumMember(Value = "open")]
+            Open,
+
+            [EnumMember(Value = "closed")]
+            Closed,
+
+            [EnumMember(Value = "voided")]
+            Voided,
 
         };
 
@@ -902,6 +941,63 @@ namespace Recurly
 
             [EnumMember(Value = "manual")]
             Manual,
+
+        };
+
+        public enum CreditApplicationMode
+        {
+            Undefined = 0,
+
+            [EnumMember(Value = "all")]
+            All,
+
+            [EnumMember(Value = "none")]
+            None,
+
+        };
+
+        public enum CreditApplicationAllowedOriginType
+        {
+            Undefined = 0,
+
+            [EnumMember(Value = "line_item_refund")]
+            LineItemRefund,
+
+            [EnumMember(Value = "open_amount_refund")]
+            OpenAmountRefund,
+
+            [EnumMember(Value = "immediate_change")]
+            ImmediateChange,
+
+            [EnumMember(Value = "termination")]
+            Termination,
+
+            [EnumMember(Value = "credit")]
+            Credit,
+
+            [EnumMember(Value = "write_off")]
+            WriteOff,
+
+            [EnumMember(Value = "refund")]
+            Refund,
+
+            [EnumMember(Value = "external_refund")]
+            ExternalRefund,
+
+            [EnumMember(Value = "carryforward_credit")]
+            CarryforwardCredit,
+
+            [EnumMember(Value = "usage_correction")]
+            UsageCorrection,
+
+            [EnumMember(Value = "prepayment")]
+            Prepayment,
+
+            [EnumMember(Value = "gift_card")]
+            GiftCard,
+
+            [EnumMember(Value = "carryforward_gift_credit")]
+            CarryforwardGiftCredit,
 
         };
 
@@ -969,6 +1065,9 @@ namespace Recurly
             [EnumMember(Value = "google_pay")]
             GooglePay,
 
+            [EnumMember(Value = "mercadopago")]
+            Mercadopago,
+
             [EnumMember(Value = "money_order")]
             MoneyOrder,
 
@@ -977,6 +1076,9 @@ namespace Recurly
 
             [EnumMember(Value = "paypal")]
             Paypal,
+
+            [EnumMember(Value = "pix_automatico")]
+            PixAutomatico,
 
             [EnumMember(Value = "roku")]
             Roku,
@@ -1343,6 +1445,15 @@ namespace Recurly
 
         };
 
+        public enum NextActionType
+        {
+            Undefined = 0,
+
+            [EnumMember(Value = "qr_code")]
+            QrCode,
+
+        };
+
         public enum CvvCheck
         {
             Undefined = 0,
@@ -1491,6 +1602,9 @@ namespace Recurly
             [EnumMember(Value = "apple_pay")]
             ApplePay,
 
+            [EnumMember(Value = "apple_pay_merchant_token")]
+            ApplePayMerchantToken,
+
             [EnumMember(Value = "bank_account_info")]
             BankAccountInfo,
 
@@ -1511,6 +1625,9 @@ namespace Recurly
 
             [EnumMember(Value = "google_pay")]
             GooglePay,
+
+            [EnumMember(Value = "google_pay_device_pan")]
+            GooglePayDevicePan,
 
             [EnumMember(Value = "iban_bank_account")]
             IbanBankAccount,
@@ -1550,6 +1667,18 @@ namespace Recurly
 
             [EnumMember(Value = "upi_autopay")]
             UpiAutopay,
+
+            [EnumMember(Value = "pix_automatico")]
+            PixAutomatico,
+
+            [EnumMember(Value = "mercadopago")]
+            Mercadopago,
+
+            [EnumMember(Value = "klarna")]
+            Klarna,
+
+            [EnumMember(Value = "braintree_google_pay")]
+            BraintreeGooglePay,
 
         };
 
@@ -2381,6 +2510,12 @@ namespace Recurly
 
             [EnumMember(Value = "becs")]
             Becs,
+
+            [EnumMember(Value = "pix-automatico")]
+            PixAutomatico,
+
+            [EnumMember(Value = "mercadopago")]
+            Mercadopago,
 
         };
 

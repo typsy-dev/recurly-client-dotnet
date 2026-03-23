@@ -52,6 +52,15 @@ namespace Recurly.Resources
         [JsonProperty("coupon_codes")]
         public List<string> CouponCodes { get; set; }
 
+        /// <value>
+        /// Controls whether credit invoices are automatically applied to new invoices.
+        /// The `mode` field determines the application behavior. When mode is `all`,
+        /// the optional `allowed_origins` array can restrict which credit invoice origins
+        /// are applied.
+        /// </value>
+        [JsonProperty("credit_application_policy")]
+        public CreditApplicationPolicy CreditApplicationPolicy { get; set; }
+
         /// <value>If there are pending credits on the account that will be invoiced during the subscription creation, these will be used as the Customer Notes on the credit invoice.</value>
         [JsonProperty("credit_customer_notes")]
         public string CreditCustomerNotes { get; set; }
@@ -68,7 +77,7 @@ namespace Recurly.Resources
         [JsonProperty("customer_notes")]
         public string CustomerNotes { get; set; }
 
-        /// <value>If present, this subscription's transactions will use the payment gateway with this code.</value>
+        /// <value>If present, this subscription's subsequent transactions will use the payment gateway with this code. To select a payment gateway to use when creating a Subscription, be sure to set the `account.billing_info.gateway_code` as well.</value>
         [JsonProperty("gateway_code")]
         public string GatewayCode { get; set; }
 
@@ -120,6 +129,14 @@ namespace Recurly.Resources
         /// <value>For manual invoicing, this identifies the PO number associated with the subscription.</value>
         [JsonProperty("po_number")]
         public string PoNumber { get; set; }
+
+        /// <value>The price segment ID, e.g. `e28zov4fw0v2`.</value>
+        [JsonProperty("price_segment_id")]
+        public string PriceSegmentId { get; set; }
+
+        /// <value>Allows you to control how any resulting charges will be calculated and prorated.</value>
+        [JsonProperty("proration_settings")]
+        public SubscriptionCreateProrationSettings ProrationSettings { get; set; }
 
         /// <value>Optionally override the default quantity of 1.</value>
         [JsonProperty("quantity")]

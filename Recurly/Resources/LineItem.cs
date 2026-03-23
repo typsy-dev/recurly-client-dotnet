@@ -31,7 +31,7 @@ namespace Recurly.Resources
         [JsonProperty("add_on_id")]
         public string AddOnId { get; set; }
 
-        /// <value>`(quantity * unit_amount) - (discount + tax)`</value>
+        /// <value>`(quantity * unit_amount) - discount + tax`</value>
         [JsonProperty("amount")]
         public decimal? Amount { get; set; }
 
@@ -88,6 +88,10 @@ namespace Recurly.Resources
         /// <value>Optional Stock Keeping Unit assigned to an item. Available when the Credit Invoices feature is enabled.</value>
         [JsonProperty("external_sku")]
         public string ExternalSku { get; set; }
+
+        /// <value>The Harmonized System (HS) code is an internationally standardized system of names and numbers to classify traded products. The HS code, sometimes called Commodity Code, is used by customs authorities around the world to identify products when assessing duties and taxes. The HS code may also be referred to as the tariff code or customs code. Values should contain only digits and decimals.</value>
+        [JsonProperty("harmonized_system_code")]
+        public string HarmonizedSystemCode { get; set; }
 
         /// <value>Line item ID</value>
         [JsonProperty("id")]
@@ -272,6 +276,11 @@ namespace Recurly.Resources
         /// <value>The UUID is useful for matching data with the CSV exports and building URLs into Recurly's UI.</value>
         [JsonProperty("uuid")]
         public string Uuid { get; set; }
+
+        /// <value>Used by Vertex for tax calculations. Possible values are sale, rental, lease.</value>
+        [JsonProperty("vertex_transaction_type")]
+        [JsonConverter(typeof(RecurlyStringEnumConverter))]
+        public Constants.VertexTransactionType? VertexTransactionType { get; set; }
 
     }
 }

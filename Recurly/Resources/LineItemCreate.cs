@@ -53,6 +53,10 @@ namespace Recurly.Resources
         [JsonProperty("end_date")]
         public DateTime? EndDate { get; set; }
 
+        /// <value>The Harmonized System (HS) code is an internationally standardized system of names and numbers to classify traded products. The HS code, sometimes called Commodity Code, is used by customs authorities around the world to identify products when assessing duties and taxes. The HS code may also be referred to as the tariff code or customs code. Values should contain only digits and decimals. If `item_code`/`item_id` is part of the request then `harmonized_system_code` must be absent.</value>
+        [JsonProperty("harmonized_system_code")]
+        public string HarmonizedSystemCode { get; set; }
+
         /// <value>Unique code to identify an item. Available when the Credit Invoices feature is enabled.</value>
         [JsonProperty("item_code")]
         public string ItemCode { get; set; }
@@ -69,7 +73,7 @@ namespace Recurly.Resources
         [JsonProperty("liability_gl_account_id")]
         public string LiabilityGlAccountId { get; set; }
 
-        /// <value>Origin `external_gift_card` is allowed if the Gift Cards feature is enabled on your site and `type` is `credit`. Set this value in order to track gift card credits from external gift cards (like InComm). It also skips billing information requirements.  Origin `prepayment` is only allowed if `type` is `charge` and `tax_exempt` is left blank or set to true.  This origin creates a charge and opposite credit on the account to be used for future invoices.</value>
+        /// <value>Origin `external_gift_card` is allowed if the Gift Cards feature is enabled on your site, `type` is `credit` and `tax_exempt` is `true` if you are using taxes. Set this value in order to track gift card credits from external gift cards (like InComm). It also skips billing information requirements.  Origin `prepayment` is only allowed if `type` is `charge` and `tax_exempt` is left blank or set to true.  This origin creates a charge and opposite credit on the account to be used for future invoices.</value>
         [JsonProperty("origin")]
         [JsonConverter(typeof(RecurlyStringEnumConverter))]
         public Constants.LineItemCreateOrigin? Origin { get; set; }
@@ -137,6 +141,11 @@ namespace Recurly.Resources
         /// </value>
         [JsonProperty("unit_amount")]
         public decimal? UnitAmount { get; set; }
+
+        /// <value>Used by Vertex for tax calculations. Possible values are sale, rental, lease.</value>
+        [JsonProperty("vertex_transaction_type")]
+        [JsonConverter(typeof(RecurlyStringEnumConverter))]
+        public Constants.VertexTransactionType? VertexTransactionType { get; set; }
 
     }
 }

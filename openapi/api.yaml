@@ -217,6 +217,7 @@ x-tagGroups:
   - coupon
   - coupon_redemption
   - unique_coupon_code
+  - price_segment
 - name: Invoices and Payments
   tags:
   - invoice
@@ -274,6 +275,8 @@ tags:
   x-displayName: Account Acquisition Info
   description: Recurly offers the ability to record marketing data on customer accounts
     to match this data with revenue and billing data events in Recurly.
+- name: price_segment
+  x-displayName: Price Segment
 - name: billing_info
   x-displayName: Billing Info
   description: Without the premium Wallet feature, an account can only have one stored
@@ -2793,6 +2796,97 @@ paths:
               schema:
                 "$ref": "#/components/schemas/Error"
       x-code-samples: []
+  "/accounts/{account_id}/billing_infos/{billing_info_id}/verify":
+    post:
+      tags:
+      - billing_infos
+      operationId: verify_billing_infos
+      summary: Verify a billing information's credit card
+      parameters:
+      - "$ref": "#/components/parameters/account_id"
+      - "$ref": "#/components/parameters/billing_info_id"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/BillingInfoVerify"
+        required: false
+      responses:
+        '200':
+          description: Transaction information from verify.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Transaction"
+        '404':
+          description: Billing information not found, or incorrect site or account
+            ID.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+        default:
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+        '422':
+          description: Invalid billing information, or error running the verification
+            transaction.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorMayHaveTransaction"
+      x-code-samples: []
+  "/accounts/{account_id}/billing_infos/{billing_info_id}/verify_cvv":
+    post:
+      tags:
+      - billing_infos
+      operationId: verify_billing_infos_cvv
+      summary: Verify a billing information's credit card cvv
+      parameters:
+      - "$ref": "#/components/parameters/account_id"
+      - "$ref": "#/components/parameters/billing_info_id"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/BillingInfoVerifyCVV"
+      responses:
+        '200':
+          description: Transaction information from verify.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Transaction"
+        '404':
+          description: Billing information not found, or incorrect site or account
+            ID.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+        default:
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+        '422':
+          description: Invalid billing information, or error running the verification
+            transaction.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorMayHaveTransaction"
+        '429':
+          description: Too many CVV verification attempts.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+      x-code-samples: []
   "/accounts/{account_id}/coupon_redemptions":
     get:
       tags:
@@ -3218,6 +3312,70 @@ paths:
           {\n\t\tfmt.Printf(\"Resource not found: %v\", e)\n\t\treturn nil, err\n\t}\n\tfmt.Printf(\"Unexpected
           Recurly error: %v\", e)\n\treturn nil, err\n}\n\nfmt.Printf(\"Removed Coupon
           Redemption: %v\", couponRedemption.Id)"
+  "/accounts/{account_id}/coupon_redemptions/{coupon_redemption_id}":
+    get:
+      tags:
+      - coupon_redemption
+      operationId: get_coupon_redemption
+      summary: Show the coupon redemption
+      parameters:
+      - "$ref": "#/components/parameters/account_id"
+      - "$ref": "#/components/parameters/coupon_redemption_id"
+      responses:
+        '200':
+          description: A coupon redemption.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/CouponRedemption"
+        '404':
+          description: Incorrect site, account ID, or coupon redemption ID.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+        default:
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+      x-code-samples: []
+    delete:
+      tags:
+      - coupon_redemption
+      operationId: remove_coupon_redemption_by_id
+      summary: Delete the coupon redemption
+      description: Deactivate the coupon redemption on an account.
+      parameters:
+      - "$ref": "#/components/parameters/account_id"
+      - "$ref": "#/components/parameters/coupon_redemption_id"
+      responses:
+        '200':
+          description: Coupon redemption deleted.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/CouponRedemption"
+        '404':
+          description: Incorrect site, account ID, or coupon redemption ID.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+        '422':
+          description: The coupon redemption is already expired or inactive.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+        default:
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+      x-code-samples: []
   "/accounts/{account_id}/credit_payments":
     get:
       tags:
@@ -4368,6 +4526,51 @@ paths:
           accountNotes.Fetch()\n\tif e, ok := err.(*recurly.Error); ok {\n\t\tfmt.Printf(\"Failed
           to retrieve next page: %v\", e)\n\t\tbreak\n\t}\n\tfor i, note := range
           accountNotes.Data() {\n\t\tfmt.Printf(\"Account Note %3d: %s\\n\",\n\t\t\ti,\n\t\t\tnote.Id,\n\t\t)\n\t}\n}"
+    post:
+      tags:
+      - note
+      operationId: create_account_note
+      summary: Create an account note
+      parameters:
+      - "$ref": "#/components/parameters/account_id"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/AccountNoteCreate"
+        required: true
+      responses:
+        '201':
+          description: An account note.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/AccountNote"
+        '400':
+          description: Bad request; perhaps missing or invalid parameters.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+        '404':
+          description: Incorrect site or account ID.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+        '422':
+          description: A validation error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+        default:
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+      x-code-samples: []
   "/accounts/{account_id}/notes/{account_note_id}":
     get:
       tags:
@@ -4376,12 +4579,7 @@ paths:
       summary: Fetch an account note
       parameters:
       - "$ref": "#/components/parameters/account_id"
-      - name: account_note_id
-        in: path
-        description: Account Note ID.
-        required: true
-        schema:
-          type: string
+      - "$ref": "#/components/parameters/account_note_id"
       responses:
         '200':
           description: An account note.
@@ -4494,6 +4692,30 @@ paths:
           {\n\t\tfmt.Printf(\"Resource not found: %v\", e)\n\t\treturn nil, err\n\t}\n\tfmt.Printf(\"Unexpected
           Recurly error: %v\", e)\n\treturn nil, err\n}\nfmt.Printf(\"Fetched Account
           Note: %v\", accountNote)"
+    delete:
+      tags:
+      - note
+      operationId: remove_account_note
+      summary: Delete an account note
+      parameters:
+      - "$ref": "#/components/parameters/account_id"
+      - "$ref": "#/components/parameters/account_note_id"
+      responses:
+        '204':
+          description: Account note deleted.
+        '404':
+          description: Incorrect site, account or note ID.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+        default:
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+      x-code-samples: []
   "/accounts/{account_id}/shipping_addresses":
     get:
       tags:
@@ -11872,6 +12094,72 @@ paths:
           {\n\t\tfmt.Printf(\"Resource not found: %v\", e)\n\t\treturn nil, err\n\t}\n\tfmt.Printf(\"Unexpected
           Recurly error: %v\", e)\n\treturn nil, err\n}\nfmt.Printf(\"Removed Plan
           Add-On: %v\", planAddOn)"
+  "/price_segments":
+    get:
+      tags:
+      - price_segment
+      operationId: list_price_segments
+      summary: List a site's price segments
+      description: See the [Pagination Guide](/developers/guides/pagination.html)
+        to learn how to use pagination in the API and Client Libraries.
+      parameters:
+      - "$ref": "#/components/parameters/ids"
+      - "$ref": "#/components/parameters/limit"
+      - "$ref": "#/components/parameters/order"
+      responses:
+        '200':
+          description: A list of price segments.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/PriceSegmentList"
+        '400':
+          description: Invalid or unpermitted parameter.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+        '404':
+          description: Incorrect site ID.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+        default:
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+      x-code-samples: []
+  "/price_segments/{price_segment_id}":
+    get:
+      tags:
+      - price_segment
+      operationId: get_price_segment
+      summary: Fetch a price segment
+      parameters:
+      - "$ref": "#/components/parameters/price_segment_id"
+      responses:
+        '200':
+          description: A price segment.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/PriceSegment"
+        '404':
+          description: Incorrect site or price segment ID.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+        default:
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+      x-code-samples: []
   "/add_ons":
     get:
       tags:
@@ -14525,6 +14813,70 @@ paths:
           e, ok := err.(*recurly.Error); ok {\n\t\tfmt.Printf(\"Failed to retrieve
           next page: %v\", e)\n\t\tbreak\n\t}\n\tfor i, redemption := range subCouponRedemptions.Data()
           {\n\t\tfmt.Printf(\"Subscription Coupon Redemption %3d: %s\\n\",\n\t\t\ti,\n\t\t\tredemption.Id,\n\t\t)\n\t}\n}"
+  "/subscriptions/{subscription_id}/coupon_redemptions/{coupon_redemption_id}":
+    get:
+      tags:
+      - coupon_redemption
+      operationId: get_subscription_coupon_redemption
+      summary: Show the coupon redemption for a subscription
+      parameters:
+      - "$ref": "#/components/parameters/subscription_id"
+      - "$ref": "#/components/parameters/coupon_redemption_id"
+      responses:
+        '200':
+          description: The coupon redemption on a subscription.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/CouponRedemption"
+        '404':
+          description: Incorrect site, subscription ID, or coupon redemption ID.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+        default:
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+      x-code-samples: []
+    delete:
+      tags:
+      - coupon_redemption
+      operationId: remove_subscription_coupon_redemption
+      summary: Delete the coupon redemption from a subscription
+      description: Deactivate the coupon redemption on a subscription.
+      parameters:
+      - "$ref": "#/components/parameters/subscription_id"
+      - "$ref": "#/components/parameters/coupon_redemption_id"
+      responses:
+        '200':
+          description: Coupon redemption deleted.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/CouponRedemption"
+        '404':
+          description: Incorrect site, subscription ID, or coupon redemption ID.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+        '422':
+          description: The coupon redemption is already expired or inactive.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+        default:
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+      x-code-samples: []
   "/subscriptions/{subscription_id}/add_ons/{add_on_id}/usage":
     get:
       tags:
@@ -16781,6 +17133,13 @@ components:
       required: true
       schema:
         type: string
+    account_note_id:
+      name: account_note_id
+      in: path
+      description: Account Note ID.
+      required: true
+      schema:
+        type: string
     add_on_id:
       name: add_on_id
       in: path
@@ -16817,6 +17176,14 @@ components:
       in: path
       description: Coupon ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`.
         For code use prefix `code-`, e.g. `code-10off`.
+      required: true
+      schema:
+        type: string
+    coupon_redemption_id:
+      name: coupon_redemption_id
+      in: path
+      description: Coupon Redemption ID or UUID. For ID no prefix is used e.g. `e28zov4fw0v2`.
+        For UUID use prefix `uuid-`, e.g. `uuid-123457890`.
       required: true
       schema:
         type: string
@@ -16925,7 +17292,8 @@ components:
       name: invoice_id
       in: path
       description: Invoice ID or number. For ID no prefix is used e.g. `e28zov4fw0v2`.
-        For number use prefix `number-`, e.g. `number-1000`.
+        For number use prefix `number-`, e.g. `number-1000`. For number with prefix
+        or country code, use `number-` and `prefix`, e.g. `number-TEST-FR1001`
       required: true
       schema:
         type: string
@@ -16971,6 +17339,14 @@ components:
       required: true
       schema:
         type: string
+    price_segment_id:
+      name: price_segment_id
+      in: path
+      description: The price segment ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`.
+        For code use prefix `code-`, e.g. `code-gold`.
+      required: true
+      schema:
+        "$ref": "#/components/schemas/PriceSegmentIdOrCode"
     shipping_address_id:
       name: shipping_address_id
       in: path
@@ -17490,6 +17866,33 @@ components:
           type: array
           items:
             "$ref": "#/components/schemas/Plan"
+    PriceSegmentList:
+      type: object
+      properties:
+        object:
+          type: string
+          title: Object type
+          description: Will always be List.
+        has_more:
+          type: boolean
+          description: Indicates there are more results on subsequent pages.
+        next:
+          type: string
+          description: Path to subsequent page of results.
+        data:
+          type: array
+          items:
+            "$ref": "#/components/schemas/PriceSegment"
+    PriceSegment:
+      type: object
+      properties:
+        object:
+          type: string
+          title: Object type
+        id:
+          "$ref": "#/components/schemas/PriceSegmentId"
+        code:
+          "$ref": "#/components/schemas/PriceSegmentCode"
     SiteList:
       type: object
       properties:
@@ -17598,6 +18001,11 @@ components:
           type: string
           description: An arbitrary identifier for the marketing campaign that led
             to the acquisition of this account.
+        acquired_at:
+          type: string
+          format: date-time
+          description: Date the account was first created if different than the account.created_at.
+            ie Importing accounts.
     AccountAcquisitionReadOnly:
       type: object
       properties:
@@ -17845,6 +18253,13 @@ components:
           description: The Avalara AvaTax value that can be passed to identify the
             customer type for tax purposes. The range of values can be A - R (more
             info at Avalara). Value is case-sensitive.
+        bill_date:
+          type: string
+          title: Bill Date
+          format: date-time
+          description: The preferred billing date for the account. This date will
+            be used as the billing date for when activating new subscriptions on the
+            account.
     AccountResponse:
       type: object
       properties:
@@ -17951,6 +18366,13 @@ components:
           description: The Avalara AvaTax value that can be passed to identify the
             customer type for tax purposes. The range of values can be A - R (more
             info at Avalara). Value is case-sensitive.
+        bill_date:
+          title: Bill Date
+          type: string
+          format: date-time
+          description: The preferred billing date for the account. This date will
+            be used as the billing date for when activating new subscriptions on the
+            account.
     AccountNote:
       type: object
       required:
@@ -17974,6 +18396,14 @@ components:
           type: string
           format: date-time
           readOnly: true
+    AccountNoteCreate:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: The content of the account note.
     AccountMini:
       type: object
       title: Account mini details
@@ -18079,9 +18509,11 @@ components:
         street1:
           type: string
           title: Street 1
+          maxLength: 50
         street2:
           type: string
           title: Street 2
+          maxLength: 50
         city:
           type: string
           title: City
@@ -18287,6 +18719,17 @@ components:
             offering you can also choose to instead use simple values of `unknown`,
             `physical`, or `digital` tax codes. If `item_code`/`item_id` is part of
             the request then `tax_code` must be absent.
+        harmonized_system_code:
+          type: string
+          title: Harmonized System code
+          description: The Harmonized System (HS) code is an internationally standardized
+            system of names and numbers to classify traded products. The HS code,
+            sometimes called Commodity Code, is used by customs authorities around
+            the world to identify products when assessing duties and taxes. The HS
+            code may also be referred to as the tariff code or customs code. Values
+            should contain only digits and decimals.
+          pattern: "^\\d+(\\.\\d+)*$"
+          maxLength: 25
         display_quantity:
           type: boolean
           title: Display quantity?
@@ -18509,6 +18952,17 @@ components:
             offering you can also choose to instead use simple values of `unknown`,
             `physical`, or `digital` tax codes. If `item_code`/`item_id` is part of
             the request then `tax_code` must be absent.
+        harmonized_system_code:
+          type: string
+          title: Harmonized System code
+          description: The Harmonized System (HS) code is an internationally standardized
+            system of names and numbers to classify traded products. The HS code,
+            sometimes called Commodity Code, is used by customs authorities around
+            the world to identify products when assessing duties and taxes. The HS
+            code may also be referred to as the tariff code or customs code. Values
+            should contain only digits and decimals.
+          pattern: "^\\d+(\\.\\d+)*$"
+          maxLength: 25
         currencies:
           type: array
           title: Add-on pricing
@@ -18664,6 +19118,17 @@ components:
             offering you can also choose to instead use simple values of `unknown`,
             `physical`, or `digital` tax codes. If an `Item` is associated to the
             `AddOn` then `tax_code` must be absent.
+        harmonized_system_code:
+          type: string
+          title: Harmonized System code
+          description: The Harmonized System (HS) code is an internationally standardized
+            system of names and numbers to classify traded products. The HS code,
+            sometimes called Commodity Code, is used by customs authorities around
+            the world to identify products when assessing duties and taxes. The HS
+            code may also be referred to as the tariff code or customs code. Values
+            should contain only digits and decimals.
+          pattern: "^\\d+(\\.\\d+)*$"
+          maxLength: 25
         display_quantity:
           type: boolean
           title: Display quantity?
@@ -18896,6 +19361,8 @@ components:
         amazon_billing_agreement_id:
           type: string
           title: Amazon billing agreement ID
+          description: Only supported on Amazon V1. For Amazon V2, use token_id with
+            Recurly.js.
         paypal_billing_agreement_id:
           type: string
           title: PayPal billing agreement ID
@@ -18905,6 +19372,11 @@ components:
         fraud_session_id:
           type: string
           title: Fraud Session ID
+        adyen_risk_profile_reference_id:
+          type: string
+          title: Adyen Risk Profile Reference ID
+          description: The Adyen Risk Profile Reference ID is used to identify the
+            risk profile for the payment method.
         transaction_type:
           description: An optional type designation for the payment gateway transaction
             created by this request. Supports 'moto' value, which is the acronym for
@@ -18999,12 +19471,27 @@ components:
           type: string
           description: An identifier for a specific payment gateway.
           maxLength: 13
+        three_d_secure_action_result_token_id:
+          type: string
+          description: A token generated by Recurly.js after completing a 3-D Secure
+            device fingerprinting or authentication challenge.
     BillingInfoVerifyCVV:
       type: object
       properties:
         verification_value:
           type: string
           description: Unique security code for a credit card.
+        gateway_code:
+          type: string
+          description: An identifier for a specific payment gateway.
+          maxLength: 13
+        three_d_secure_action_result_token_id:
+          type: string
+          description: A token generated by Recurly.js after completing a 3-D Secure
+            device fingerprinting or authentication challenge.
+        token_id:
+          type: string
+          description: A token [generated by Recurly.js](https://recurly.com/developers/reference/recurly-js/#getting-a-token).
     Coupon:
       type: object
       properties:
@@ -19403,6 +19890,13 @@ components:
           title: Object type
           description: Will always be `coupon`.
           readOnly: true
+        uuid:
+          type: string
+          title: Recurly UUID
+          description: The UUID is useful for matching data with the CSV exports and
+            building URLs into Recurly's UI.
+          maxLength: 32
+          readOnly: true
         account:
           type: object
           title: Account
@@ -19675,6 +20169,11 @@ components:
             are removed from the accouts or subscriptions, will be hard deleted an
             no longer visible.
           readOnly: true
+    CurrencyCode:
+      type: string
+      title: Currency
+      description: 3-letter ISO 4217 currency code.
+      maxLength: 3
     GeneralLedgerAccountId:
       type: string
       title: General Ledger Account ID
@@ -19835,6 +20334,12 @@ components:
         object:
           title: Object type
           type: string
+        has_more:
+          type: boolean
+          description: Indicates there are more results on subsequent pages.
+        next:
+          type: string
+          description: Path to subsequent page of results.
         data:
           title: Performance Obligation
           type: array
@@ -19973,6 +20478,17 @@ components:
             codes using any of these tax integrations. For Recurly's In-the-Box tax
             offering you can also choose to instead use simple values of `unknown`,
             `physical`, or `digital` tax codes.
+        harmonized_system_code:
+          type: string
+          title: Harmonized System code
+          description: The Harmonized System (HS) code is an internationally standardized
+            system of names and numbers to classify traded products. The HS code,
+            sometimes called Commodity Code, is used by customs authorities around
+            the world to identify products when assessing duties and taxes. The HS
+            code may also be referred to as the tariff code or customs code. Values
+            should contain only digits and decimals.
+          pattern: "^\\d+(\\.\\d+)*$"
+          maxLength: 25
         tax_exempt:
           type: boolean
           title: Tax exempt?
@@ -20083,6 +20599,17 @@ components:
             codes using any of these tax integrations. For Recurly's In-the-Box tax
             offering you can also choose to instead use simple values of `unknown`,
             `physical`, or `digital` tax codes.
+        harmonized_system_code:
+          type: string
+          title: Harmonized System code
+          description: The Harmonized System (HS) code is an internationally standardized
+            system of names and numbers to classify traded products. The HS code,
+            sometimes called Commodity Code, is used by customs authorities around
+            the world to identify products when assessing duties and taxes. The HS
+            code may also be referred to as the tariff code or customs code. Values
+            should contain only digits and decimals.
+          pattern: "^\\d+(\\.\\d+)*$"
+          maxLength: 25
         tax_exempt:
           type: boolean
           title: Tax exempt?
@@ -20181,6 +20708,17 @@ components:
             codes using any of these tax integrations. For Recurly's In-the-Box tax
             offering you can also choose to instead use simple values of `unknown`,
             `physical`, or `digital` tax codes.
+        harmonized_system_code:
+          type: string
+          title: Harmonized System Code
+          description: The Harmonized System (HS) code is an internationally standardized
+            system of names and numbers to classify traded products. The HS code,
+            sometimes called Commodity Code, is used by customs authorities around
+            the world to identify products when assessing duties and taxes. The HS
+            code may also be referred to as the tariff code or customs code. Values
+            should contain only digits and decimals.
+          pattern: "^\\d+(\\.\\d+)*$"
+          maxLength: 25
         tax_exempt:
           type: boolean
           title: Tax exempt?
@@ -20315,6 +20853,11 @@ components:
           title: Subtotal
           description: The summation of charges and credits, before discounts and
             taxes.
+        subtotal_after_discount:
+          type: number
+          format: float
+          title: Subtotal After Discount
+          description: The summation of charges and credits, after discounts applied.
         tax:
           type: number
           format: float
@@ -20511,6 +21054,8 @@ components:
           default: 0
         net_terms_type:
           "$ref": "#/components/schemas/NetTermsTypeEnum"
+        credit_application_policy:
+          "$ref": "#/components/schemas/CreditApplicationPolicy"
         po_number:
           type: string
           title: Purchase order number
@@ -20532,6 +21077,8 @@ components:
             will default to the VAT Reverse Charge Notes text specified on the Tax
             Settings page in your Recurly admin, unless custom notes were created
             with the original subscription.
+        vertex_transaction_type:
+          "$ref": "#/components/schemas/VertexTransactionTypeEnum"
       required:
       - currency
     InvoiceCollect:
@@ -20570,6 +21117,13 @@ components:
           title: Credit invoices
           items:
             "$ref": "#/components/schemas/Invoice"
+        verification_transactions:
+          type: array
+          title: Verification transactions
+          description: Verification transactions (used for free trial payment method
+            validation)
+          items:
+            "$ref": "#/components/schemas/Transaction"
     InvoiceUpdate:
       type: object
       properties:
@@ -20958,7 +21512,7 @@ components:
           type: number
           format: float
           title: Total after discounts and taxes
-          description: "`(quantity * unit_amount) - (discount + tax)`"
+          description: "`(quantity * unit_amount) - discount + tax`"
         description:
           type: string
           title: Description
@@ -21062,6 +21616,8 @@ components:
             Refer to [the documentation](https://help.avalara.com/AvaTax_for_Communications/Tax_Calculation/AvaTax_for_Communications_Tax_Engine/Mapping_Resources/TM_00115_AFC_Modules_Corresponding_Transaction_Types)
             for more available t/s types.
           minimum: 0
+        vertex_transaction_type:
+          "$ref": "#/components/schemas/VertexTransactionTypeEnum"
         tax_code:
           type: string
           maxLength: 50
@@ -21071,6 +21627,17 @@ components:
             codes using any of these tax integrations. For Recurly's In-the-Box tax
             offering you can also choose to instead use simple values of `unknown`,
             `physical`, or `digital` tax codes.
+        harmonized_system_code:
+          type: string
+          title: Harmonized System Code
+          description: The Harmonized System (HS) code is an internationally standardized
+            system of names and numbers to classify traded products. The HS code,
+            sometimes called Commodity Code, is used by customs authorities around
+            the world to identify products when assessing duties and taxes. The HS
+            code may also be referred to as the tariff code or customs code. Values
+            should contain only digits and decimals.
+          maxLength: 25
+          pattern: "^\\d+(\\.\\d+)*$"
         tax_info:
           "$ref": "#/components/schemas/TaxInfo"
         origin_tax_address_source:
@@ -21306,6 +21873,8 @@ components:
             for more available t/s types. If an `Item` is associated to the `LineItem`,
             then the `avalara_service_type` must be absent.
           minimum: 0
+        vertex_transaction_type:
+          "$ref": "#/components/schemas/VertexTransactionTypeEnum"
         tax_code:
           type: string
           maxLength: 50
@@ -21315,6 +21884,18 @@ components:
             codes using any of these tax integrations. For Recurly's In-the-Box tax
             offering you can also choose to instead use simple values of `unknown`,
             `physical`, or `digital` tax codes.
+        harmonized_system_code:
+          type: string
+          title: Harmonized System Code
+          description: The Harmonized System (HS) code is an internationally standardized
+            system of names and numbers to classify traded products. The HS code,
+            sometimes called Commodity Code, is used by customs authorities around
+            the world to identify products when assessing duties and taxes. The HS
+            code may also be referred to as the tariff code or customs code. Values
+            should contain only digits and decimals. If `item_code`/`item_id` is part
+            of the request then `harmonized_system_code` must be absent.
+          maxLength: 25
+          pattern: "^\\d+(\\.\\d+)*$"
         product_code:
           type: string
           title: Product code
@@ -21327,12 +21908,12 @@ components:
         origin:
           title: Origin
           description: Origin `external_gift_card` is allowed if the Gift Cards feature
-            is enabled on your site and `type` is `credit`. Set this value in order
-            to track gift card credits from external gift cards (like InComm). It
-            also skips billing information requirements.  Origin `prepayment` is only
-            allowed if `type` is `charge` and `tax_exempt` is left blank or set to
-            true.  This origin creates a charge and opposite credit on the account
-            to be used for future invoices.
+            is enabled on your site, `type` is `credit` and `tax_exempt` is `true`
+            if you are using taxes. Set this value in order to track gift card credits
+            from external gift cards (like InComm). It also skips billing information
+            requirements.  Origin `prepayment` is only allowed if `type` is `charge`
+            and `tax_exempt` is left blank or set to true.  This origin creates a
+            charge and opposite credit on the account to be used for future invoices.
           "$ref": "#/components/schemas/LineItemCreateOriginEnum"
         custom_fields:
           "$ref": "#/components/schemas/CustomFields"
@@ -21372,6 +21953,25 @@ components:
           type: string
           title: Reference Type
           "$ref": "#/components/schemas/PaymentGatewayReferencesEnum"
+    PlanCode:
+      type: string
+      title: Plan code
+      description: Unique code to identify the plan. This is used in Hosted Payment
+        Page URLs and in the invoice exports.
+      pattern: "/^[a-z0-9_+-]+$/"
+      maxLength: 50
+    PlanName:
+      type: string
+      title: Name
+      description: This name describes your plan and will appear on the Hosted Payment
+        Page and the subscriber's invoice.
+      maxLength: 255
+    PlanIntervalLength:
+      type: integer
+      title: Interval length
+      description: Length of the plan's billing interval in `interval_unit`.
+      default: 1
+      minimum: 1
     PlanMini:
       type: object
       title: Plan mini details
@@ -21387,64 +21987,48 @@ components:
           title: Object type
           readOnly: true
         code:
-          type: string
-          title: Plan code
-          description: Unique code to identify the plan. This is used in Hosted Payment
-            Page URLs and in the invoice exports.
-          pattern: "/^[a-z0-9_+-]+$/i"
-          maxLength: 50
+          "$ref": "#/components/schemas/PlanCode"
         name:
-          type: string
-          title: Name
-          description: This name describes your plan and will appear on the Hosted
-            Payment Page and the subscriber's invoice.
-          maxLength: 255
-    Plan:
+          "$ref": "#/components/schemas/PlanName"
+    PlanCommon:
       type: object
-      description: Full plan details.
       properties:
-        id:
-          type: string
-          title: Plan ID
-          maxLength: 13
-          readOnly: true
-        object:
-          type: string
-          title: Object type
-          readOnly: true
-        code:
-          type: string
-          title: Plan code
-          description: Unique code to identify the plan. This is used in Hosted Payment
-            Page URLs and in the invoice exports.
-          pattern: "/^[a-z0-9_+-]+$/i"
-          maxLength: 50
-        state:
-          title: State
-          description: The current state of the plan.
-          readOnly: true
-          "$ref": "#/components/schemas/ActiveStateEnum"
-        name:
-          type: string
-          title: Name
-          description: This name describes your plan and will appear on the Hosted
-            Payment Page and the subscriber's invoice.
-          maxLength: 255
         description:
           type: string
           title: Description
           description: Optional description, not displayed.
-        interval_unit:
-          title: Interval unit
-          description: Unit for the plan's billing interval.
-          default: months
-          "$ref": "#/components/schemas/IntervalUnitEnum"
-        interval_length:
-          type: integer
-          title: Interval length
-          description: Length of the plan's billing interval in `interval_unit`.
-          default: 1
-          minimum: 1
+        accounting_code:
+          type: string
+          title: Plan accounting code
+          description: Accounting code for invoice line items for the plan. If no
+            value is provided, it defaults to plan's code.
+          pattern: "/^[a-z0-9_+-]+$/"
+          maxLength: 20
+        revenue_schedule_type:
+          title: Revenue schedule type
+          "$ref": "#/components/schemas/RevenueScheduleTypeEnum"
+        liability_gl_account_id:
+          "$ref": "#/components/schemas/GeneralLedgerAccountId"
+        revenue_gl_account_id:
+          "$ref": "#/components/schemas/GeneralLedgerAccountId"
+        performance_obligation_id:
+          "$ref": "#/components/schemas/PerformanceObligationId"
+        setup_fee_accounting_code:
+          type: string
+          title: Setup fee accounting code
+          description: Accounting code for invoice line items for the plan's setup
+            fee. If no value is provided, it defaults to plan's accounting code.
+          pattern: "/^[a-z0-9_+-]+$/"
+          maxLength: 20
+        setup_fee_revenue_schedule_type:
+          title: Setup fee revenue schedule type
+          "$ref": "#/components/schemas/RevenueScheduleTypeEnum"
+        setup_fee_liability_gl_account_id:
+          "$ref": "#/components/schemas/GeneralLedgerAccountId"
+        setup_fee_revenue_gl_account_id:
+          "$ref": "#/components/schemas/GeneralLedgerAccountId"
+        setup_fee_performance_obligation_id:
+          "$ref": "#/components/schemas/PerformanceObligationId"
         trial_unit:
           title: Trial unit
           description: Units for the plan's trial period.
@@ -21480,36 +22064,8 @@ components:
             renew its term at renewal. If `auto_renew` is `false`, then a subscription
             will expire at the end of its term. `auto_renew` can be overridden on
             the subscription record itself.
-        pricing_model:
-          title: Pricing Model
-          "$ref": "#/components/schemas/PricingModelTypeEnum"
-        ramp_intervals:
-          type: array
-          title: Ramp Intervals
-          items:
-            "$ref": "#/components/schemas/PlanRampInterval"
         custom_fields:
           "$ref": "#/components/schemas/CustomFields"
-        revenue_schedule_type:
-          title: Revenue schedule type
-          "$ref": "#/components/schemas/RevenueScheduleTypeEnum"
-        setup_fee_revenue_schedule_type:
-          title: Setup fee revenue schedule type
-          "$ref": "#/components/schemas/RevenueScheduleTypeEnum"
-        accounting_code:
-          type: string
-          title: Plan accounting code
-          description: Accounting code for invoice line items for the plan. If no
-            value is provided, it defaults to plan's code.
-          pattern: "/^[a-z0-9_+-]+$/"
-          maxLength: 20
-        setup_fee_accounting_code:
-          type: string
-          title: Setup fee accounting code
-          description: Accounting code for invoice line items for the plan's setup
-            fee. If no value is provided, it defaults to plan's accounting code.
-          pattern: "/^[a-z0-9_+-]+$/"
-          maxLength: 20
         avalara_transaction_type:
           type: integer
           title: Avalara Transaction Type
@@ -21535,6 +22091,17 @@ components:
             codes using any of these tax integrations. For Recurly's In-the-Box tax
             offering you can also choose to instead use simple values of `unknown`,
             `physical`, or `digital` tax codes.
+        harmonized_system_code:
+          type: string
+          title: Harmonized System Code
+          description: The Harmonized System (HS) code is an internationally standardized
+            system of names and numbers to classify traded products. The HS code,
+            sometimes called Commodity Code, is used by customs authorities around
+            the world to identify products when assessing duties and taxes. The HS
+            code may also be referred to as the tariff code or customs code. Values
+            should contain only digits and decimals.
+          maxLength: 25
+          pattern: "^\\d+(\\.\\d+)*$"
         tax_exempt:
           type: boolean
           title: Tax exempt?
@@ -21545,12 +22112,6 @@ components:
           title: Vertex Transaction Type
           description: Used by Vertex for tax calculations. Possible values are `sale`,
             `rental`, `lease`.
-        currencies:
-          type: array
-          title: Pricing
-          items:
-            "$ref": "#/components/schemas/PlanPricing"
-          minItems: 1
         hosted_pages:
           type: object
           title: Hosted pages settings
@@ -21569,236 +22130,109 @@ components:
             a non-default dunning campaign should be assigned to this plan. For sites
             without multiple dunning campaigns enabled, the default dunning campaign
             will always be used.
-        created_at:
-          type: string
-          format: date-time
-          title: Created at
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          title: Last updated at
-          readOnly: true
-        deleted_at:
-          type: string
-          format: date-time
-          title: Deleted at
-          readOnly: true
-      required:
-      - code
-      - name
     PlanCreate:
       type: object
-      properties:
-        code:
-          type: string
-          title: Plan code
-          description: Unique code to identify the plan. This is used in Hosted Payment
-            Page URLs and in the invoice exports.
-          pattern: "/^[a-z0-9_+-]+$/i"
-          maxLength: 50
-        name:
-          type: string
-          title: Name
-          description: This name describes your plan and will appear on the Hosted
-            Payment Page and the subscriber's invoice.
-          maxLength: 255
-        description:
-          type: string
-          title: Description
-          description: Optional description, not displayed.
-        accounting_code:
-          type: string
-          title: Plan accounting code
-          description: Accounting code for invoice line items for the plan. If no
-            value is provided, it defaults to plan's code.
-          pattern: "/^[a-z0-9_+-]+$/"
-          maxLength: 20
-        interval_unit:
-          title: Interval unit
-          description: Unit for the plan's billing interval.
-          default: months
-          "$ref": "#/components/schemas/IntervalUnitEnum"
-        interval_length:
-          type: integer
-          title: Interval length
-          description: Length of the plan's billing interval in `interval_unit`.
-          default: 1
-          minimum: 1
-        trial_unit:
-          title: Trial unit
-          description: Units for the plan's trial period.
-          default: months
-          "$ref": "#/components/schemas/IntervalUnitEnum"
-        trial_length:
-          type: integer
-          title: Trial length
-          description: Length of plan's trial period in `trial_units`. `0` means `no
-            trial`.
-          default: 0
-          minimum: 0
-        trial_requires_billing_info:
-          type: boolean
-          title: Trial Requires BillingInfo
-          description: Allow free trial subscriptions to be created without billing
-            info. Should not be used if billing info is needed for initial invoice
-            due to existing uninvoiced charges or setup fee.
-          default: true
-        total_billing_cycles:
-          type: integer
-          title: Total billing cycles
-          description: Automatically terminate plans after a defined number of billing
-            cycles.
-          minimum: 0
-        auto_renew:
-          type: boolean
-          title: Auto renew
-          default: true
-          description: Subscriptions will automatically inherit this value once they
-            are active. If `auto_renew` is `true`, then a subscription will automatically
-            renew its term at renewal. If `auto_renew` is `false`, then a subscription
-            will expire at the end of its term. `auto_renew` can be overridden on
-            the subscription record itself.
-        pricing_model:
-          title: Pricing Model
-          "$ref": "#/components/schemas/PricingModelTypeEnum"
-        ramp_intervals:
-          type: array
-          title: Ramp Intervals
-          items:
-            "$ref": "#/components/schemas/PlanRampInterval"
-        custom_fields:
-          "$ref": "#/components/schemas/CustomFields"
-        revenue_schedule_type:
-          title: Revenue schedule type
-          "$ref": "#/components/schemas/RevenueScheduleTypeEnum"
-        liability_gl_account_id:
-          type: string
-          title: General Ledger Account ID
-          description: |
-            The ID of a general ledger account. General ledger accounts are
-            only accessible as a part of the Recurly RevRec Standard and
-            Recurly RevRec Advanced features.
-          maxLength: 13
-        revenue_gl_account_id:
-          type: string
-          title: General Ledger Account ID
-          description: |
-            The ID of a general ledger account. General ledger accounts are
-            only accessible as a part of the Recurly RevRec Standard and
-            Recurly RevRec Advanced features.
-          maxLength: 13
-        performance_obligation_id:
-          type: string
-          title: Performance Obligation ID
-          description: |
-            The ID of a performance obligation. Performance obligations are
-            only accessible as a part of the Recurly RevRec Standard and
-            Recurly RevRec Advanced features.
-          maxLength: 13
-        setup_fee_liability_gl_account_id:
-          type: string
-          title: General Ledger Account ID
-          description: |
-            The ID of a general ledger account. General ledger accounts are
-            only accessible as a part of the Recurly RevRec Standard and
-            Recurly RevRec Advanced features.
-          maxLength: 13
-        setup_fee_revenue_gl_account_id:
-          type: string
-          title: General Ledger Account ID
-          description: |
-            The ID of a general ledger account. General ledger accounts are
-            only accessible as a part of the Recurly RevRec Standard and
-            Recurly RevRec Advanced features.
-          maxLength: 13
-        setup_fee_performance_obligation_id:
-          type: string
-          title: Performance Obligation ID
-          description: |
-            The ID of a performance obligation. Performance obligations are
-            only accessible as a part of the Recurly RevRec Standard and
-            Recurly RevRec Advanced features.
-          maxLength: 13
-        setup_fee_revenue_schedule_type:
-          title: Setup fee revenue schedule type
-          "$ref": "#/components/schemas/RevenueScheduleTypeEnum"
-        setup_fee_accounting_code:
-          type: string
-          title: Setup fee accounting code
-          description: Accounting code for invoice line items for the plan's setup
-            fee. If no value is provided, it defaults to plan's accounting code.
-          pattern: "/^[a-z0-9_+-]+$/"
-          maxLength: 20
-        avalara_transaction_type:
-          type: integer
-          title: Avalara Transaction Type
-          description: Used by Avalara for Communications taxes. The transaction type
-            in combination with the service type describe how the plan is taxed. Refer
-            to [the documentation](https://help.avalara.com/AvaTax_for_Communications/Tax_Calculation/AvaTax_for_Communications_Tax_Engine/Mapping_Resources/TM_00115_AFC_Modules_Corresponding_Transaction_Types)
-            for more available t/s types.
-          minimum: 0
-        avalara_service_type:
-          type: integer
-          title: Avalara Service Type
-          description: Used by Avalara for Communications taxes. The transaction type
-            in combination with the service type describe how the plan is taxed. Refer
-            to [the documentation](https://help.avalara.com/AvaTax_for_Communications/Tax_Calculation/AvaTax_for_Communications_Tax_Engine/Mapping_Resources/TM_00115_AFC_Modules_Corresponding_Transaction_Types)
-            for more available t/s types.
-          minimum: 0
-        tax_code:
-          type: string
-          maxLength: 50
-          title: Tax code
-          description: Optional field used by Avalara, Vertex, and Recurly's In-the-Box
-            tax solution to determine taxation rules. You can pass in specific tax
-            codes using any of these tax integrations. For Recurly's In-the-Box tax
-            offering you can also choose to instead use simple values of `unknown`,
-            `physical`, or `digital` tax codes.
-        tax_exempt:
-          type: boolean
-          title: Tax exempt?
-          description: "`true` exempts tax on the plan, `false` applies tax on the
-            plan."
-        vertex_transaction_type:
-          type: string
-          title: Vertex Transaction Type
-          description: Used by Vertex for tax calculations. Possible values are `sale`,
-            `rental`, `lease`.
-        currencies:
-          type: array
-          title: Pricing
-          items:
-            "$ref": "#/components/schemas/PlanPricing"
-          minItems: 1
-        hosted_pages:
-          type: object
-          title: Hosted pages settings
-          "$ref": "#/components/schemas/PlanHostedPages"
-        add_ons:
-          type: array
-          title: Add Ons
-          items:
-            "$ref": "#/components/schemas/AddOnCreate"
-        allow_any_item_on_subscriptions:
-          type: boolean
-          title: Allow any item on subscriptions
-          default: false
-          description: |
-            Used to determine whether items can be assigned as add-ons to individual subscriptions.
-            If `true`, items can be assigned as add-ons to individual subscription add-ons.
-            If `false`, only plan add-ons can be used.
-        dunning_campaign_id:
-          type: string
-          title: Dunning Campaign ID
-          description: Unique ID to identify a dunning campaign. Used to specify if
-            a non-default dunning campaign should be assigned to this plan. For sites
-            without multiple dunning campaigns enabled, the default dunning campaign
-            will always be used.
+      allOf:
+      - type: object
+        properties:
+          code:
+            "$ref": "#/components/schemas/PlanCode"
+          name:
+            "$ref": "#/components/schemas/PlanName"
+          pricing_model:
+            title: Pricing Model
+            "$ref": "#/components/schemas/PricingModelTypeEnum"
+          currencies:
+            title: Pricing
+            description: Required only when `pricing_model` is `'fixed'`.
+            type: array
+            items:
+              "$ref": "#/components/schemas/PlanPricing"
+            minItems: 1
+          ramp_intervals:
+            type: array
+            title: Ramp Intervals
+            items:
+              title: PlanRampInterval
+              "$ref": "#/components/schemas/PlanRampInterval"
+          setup_fees:
+            type: array
+            title: Setup Fees
+            items:
+              "$ref": "#/components/schemas/PlanSetupPricingCreate"
+          add_ons:
+            type: array
+            title: Add Ons
+            items:
+              "$ref": "#/components/schemas/AddOnCreate"
+          interval_unit:
+            title: Interval unit
+            description: Unit for the plan's billing interval.
+            default: months
+            "$ref": "#/components/schemas/IntervalUnitEnum"
+          interval_length:
+            "$ref": "#/components/schemas/PlanIntervalLength"
+      - "$ref": "#/components/schemas/PlanCommon"
       required:
       - code
       - name
       - currencies
+    Plan:
+      type: object
+      allOf:
+      - "$ref": "#/components/schemas/PlanMini"
+      - type: object
+        properties:
+          state:
+            title: State
+            description: The current state of the plan.
+            readOnly: true
+            "$ref": "#/components/schemas/ActiveStateEnum"
+          pricing_model:
+            title: Pricing Model
+            "$ref": "#/components/schemas/PricingModelTypeEnum"
+          currencies:
+            title: Pricing
+            description: Present only when `pricing_model` is `'fixed'`.
+            "$ref": "#/components/schemas/PlanCurrencies"
+          ramp_intervals:
+            type: array
+            title: Ramp Intervals
+            items:
+              "$ref": "#/components/schemas/PlanRampInterval"
+          setup_fees:
+            type: array
+            title: Setup Fees
+            items:
+              "$ref": "#/components/schemas/PlanSetupPricing"
+          interval_unit:
+            title: Interval unit
+            description: Unit for the plan's billing interval.
+            default: months
+            "$ref": "#/components/schemas/IntervalUnitEnum"
+          interval_length:
+            "$ref": "#/components/schemas/PlanIntervalLength"
+      - "$ref": "#/components/schemas/PlanCommon"
+      - type: object
+        properties:
+          created_at:
+            type: string
+            format: date-time
+            title: Created at
+            readOnly: true
+          updated_at:
+            type: string
+            format: date-time
+            title: Last updated at
+            readOnly: true
+          deleted_at:
+            type: string
+            format: date-time
+            title: Deleted at
+            readOnly: true
+      required:
+      - code
+      - name
     PlanHostedPages:
       type: object
       properties:
@@ -21825,33 +22259,54 @@ components:
       type: object
       properties:
         currency:
-          type: string
-          title: Currency
-          description: 3-letter ISO 4217 currency code.
-          maxLength: 3
+          "$ref": "#/components/schemas/CurrencyCode"
         setup_fee:
-          type: number
-          format: float
-          title: Setup fee
+          "$ref": "#/components/schemas/UnitAmount"
+          title: Setup Fee
+          description: This field is deprecated, please use top level `setup_fees`
+            instead. Amount of one-time setup fee automatically charged at the beginning
+            of a subscription billing cycle. For subscription plans with a trial,
+            the setup fee will be charged at the time of signup. Setup fees do not
+            increase with the quantity of a subscription plan.
+          deprecated: true
+        unit_amount:
+          "$ref": "#/components/schemas/UnitAmount"
+          title: Unit Price
+          description: This field should not be sent when the pricing model is `'ramp'`.
+        price_segment_id:
+          "$ref": "#/components/schemas/PriceSegmentIdOrCode"
+        tax_inclusive:
+          "$ref": "#/components/schemas/TaxInclusive"
+    PlanCurrencies:
+      title: Pricing
+      type: array
+      items:
+        "$ref": "#/components/schemas/PlanPricing"
+      minItems: 1
+    PlanSetupPricingCreate:
+      type: object
+      properties:
+        currency:
+          "$ref": "#/components/schemas/CurrencyCode"
+        unit_amount:
+          "$ref": "#/components/schemas/UnitAmount"
+          title: Setup Fee
           description: Amount of one-time setup fee automatically charged at the beginning
             of a subscription billing cycle. For subscription plans with a trial,
             the setup fee will be charged at the time of signup. Setup fees do not
             increase with the quantity of a subscription plan.
-          minimum: 0
-          maximum: 1000000
+    PlanSetupPricing:
+      type: object
+      properties:
+        currency:
+          "$ref": "#/components/schemas/CurrencyCode"
         unit_amount:
-          type: number
-          format: float
-          title: Unit price
-          description: This field should not be sent when the pricing model is 'ramp'.
-          minimum: 0
-          maximum: 1000000
-        tax_inclusive:
-          type: boolean
-          title: Tax Inclusive?
-          default: false
-          description: This field is deprecated. Please do not use it.
-          deprecated: true
+          "$ref": "#/components/schemas/UnitAmount"
+          title: Setup Fee
+          description: Amount of one-time setup fee automatically charged at the beginning
+            of a subscription billing cycle. For subscription plans with a trial,
+            the setup fee will be charged at the time of signup. Setup fees do not
+            increase with the quantity of a subscription plan.
     PlanRampInterval:
       type: object
       title: Plan Ramp Interval
@@ -21867,198 +22322,38 @@ components:
             "$ref": "#/components/schemas/PlanRampPricing"
     PlanUpdate:
       type: object
-      properties:
-        id:
-          type: string
-          title: Plan ID
-          maxLength: 13
-          readOnly: true
-        code:
-          type: string
-          title: Plan code
-          description: Unique code to identify the plan. This is used in Hosted Payment
-            Page URLs and in the invoice exports.
-          pattern: "/^[a-z0-9_+-]+$/i"
-          maxLength: 50
-        name:
-          type: string
-          title: Name
-          description: This name describes your plan and will appear on the Hosted
-            Payment Page and the subscriber's invoice.
-          maxLength: 255
-        description:
-          type: string
-          title: Description
-          description: Optional description, not displayed.
-        accounting_code:
-          type: string
-          title: Plan accounting code
-          description: Accounting code for invoice line items for the plan. If no
-            value is provided, it defaults to plan's code.
-          pattern: "/^[a-z0-9_+-]+$/"
-          maxLength: 20
-        trial_unit:
-          title: Trial unit
-          description: Units for the plan's trial period.
-          default: months
-          "$ref": "#/components/schemas/IntervalUnitEnum"
-        trial_length:
-          type: integer
-          title: Trial length
-          description: Length of plan's trial period in `trial_units`. `0` means `no
-            trial`.
-          default: 0
-          minimum: 0
-        trial_requires_billing_info:
-          type: boolean
-          title: Trial Requires BillingInfo
-          description: Allow free trial subscriptions to be created without billing
-            info. Should not be used if billing info is needed for initial invoice
-            due to existing uninvoiced charges or setup fee.
-          default: true
-        total_billing_cycles:
-          type: integer
-          title: Total billing cycles
-          description: Automatically terminate plans after a defined number of billing
-            cycles.
-          minimum: 0
-        auto_renew:
-          type: boolean
-          title: Auto renew
-          default: true
-          description: Subscriptions will automatically inherit this value once they
-            are active. If `auto_renew` is `true`, then a subscription will automatically
-            renew its term at renewal. If `auto_renew` is `false`, then a subscription
-            will expire at the end of its term. `auto_renew` can be overridden on
-            the subscription record itself.
-        ramp_intervals:
-          type: array
-          title: Ramp Intervals
-          items:
-            "$ref": "#/components/schemas/PlanRampInterval"
-        custom_fields:
-          "$ref": "#/components/schemas/CustomFields"
-        revenue_schedule_type:
-          title: Revenue schedule type
-          "$ref": "#/components/schemas/RevenueScheduleTypeEnum"
-        liability_gl_account_id:
-          type: string
-          title: General Ledger Account ID
-          description: |
-            The ID of a general ledger account. General ledger accounts are
-            only accessible as a part of the Recurly RevRec Standard and
-            Recurly RevRec Advanced features.
-          maxLength: 13
-        revenue_gl_account_id:
-          type: string
-          title: General Ledger Account ID
-          description: |
-            The ID of a general ledger account. General ledger accounts are
-            only accessible as a part of the Recurly RevRec Standard and
-            Recurly RevRec Advanced features.
-          maxLength: 13
-        performance_obligation_id:
-          type: string
-          title: Performance Obligation ID
-          description: |
-            The ID of a performance obligation. Performance obligations are
-            only accessible as a part of the Recurly RevRec Standard and
-            Recurly RevRec Advanced features.
-          maxLength: 13
-        setup_fee_liability_gl_account_id:
-          type: string
-          title: General Ledger Account ID
-          description: |
-            The ID of a general ledger account. General ledger accounts are
-            only accessible as a part of the Recurly RevRec Standard and
-            Recurly RevRec Advanced features.
-          maxLength: 13
-        setup_fee_revenue_gl_account_id:
-          type: string
-          title: General Ledger Account ID
-          description: |
-            The ID of a general ledger account. General ledger accounts are
-            only accessible as a part of the Recurly RevRec Standard and
-            Recurly RevRec Advanced features.
-          maxLength: 13
-        setup_fee_performance_obligation_id:
-          type: string
-          title: Performance Obligation ID
-          description: |
-            The ID of a performance obligation. Performance obligations are
-            only accessible as a part of the Recurly RevRec Standard and
-            Recurly RevRec Advanced features.
-          maxLength: 13
-        setup_fee_revenue_schedule_type:
-          title: Setup fee revenue schedule type
-          "$ref": "#/components/schemas/RevenueScheduleTypeEnum"
-        setup_fee_accounting_code:
-          type: string
-          title: Setup fee accounting code
-          description: Accounting code for invoice line items for the plan's setup
-            fee. If no value is provided, it defaults to plan's accounting code.
-          pattern: "/^[a-z0-9_+-]+$/"
-          maxLength: 20
-        avalara_transaction_type:
-          type: integer
-          title: Avalara Transaction Type
-          description: Used by Avalara for Communications taxes. The transaction type
-            in combination with the service type describe how the plan is taxed. Refer
-            to [the documentation](https://help.avalara.com/AvaTax_for_Communications/Tax_Calculation/AvaTax_for_Communications_Tax_Engine/Mapping_Resources/TM_00115_AFC_Modules_Corresponding_Transaction_Types)
-            for more available t/s types.
-          minimum: 0
-        avalara_service_type:
-          type: integer
-          title: Avalara Service Type
-          description: Used by Avalara for Communications taxes. The transaction type
-            in combination with the service type describe how the plan is taxed. Refer
-            to [the documentation](https://help.avalara.com/AvaTax_for_Communications/Tax_Calculation/AvaTax_for_Communications_Tax_Engine/Mapping_Resources/TM_00115_AFC_Modules_Corresponding_Transaction_Types)
-            for more available t/s types.
-          minimum: 0
-        tax_code:
-          type: string
-          maxLength: 50
-          title: Tax code
-          description: Optional field used by Avalara, Vertex, and Recurly's In-the-Box
-            tax solution to determine taxation rules. You can pass in specific tax
-            codes using any of these tax integrations. For Recurly's In-the-Box tax
-            offering you can also choose to instead use simple values of `unknown`,
-            `physical`, or `digital` tax codes.
-        tax_exempt:
-          type: boolean
-          title: Tax exempt?
-          description: "`true` exempts tax on the plan, `false` applies tax on the
-            plan."
-        vertex_transaction_type:
-          type: string
-          title: Vertex Transaction Type
-          description: Used by Vertex for tax calculations. Possible values are `sale`,
-            `rental`, `lease`.
-        currencies:
-          type: array
-          title: Pricing
-          description: Optional when the pricing model is 'ramp'.
-          items:
-            "$ref": "#/components/schemas/PlanPricing"
-          minItems: 1
-        hosted_pages:
-          type: object
-          title: Hosted pages settings
-          "$ref": "#/components/schemas/PlanHostedPages"
-        allow_any_item_on_subscriptions:
-          type: boolean
-          title: Allow any item on subscriptions
-          description: |
-            Used to determine whether items can be assigned as add-ons to individual subscriptions.
-            If `true`, items can be assigned as add-ons to individual subscription add-ons.
-            If `false`, only plan add-ons can be used.
-        dunning_campaign_id:
-          type: string
-          title: Dunning Campaign ID
-          description: Unique ID to identify a dunning campaign. Used to specify if
-            a non-default dunning campaign should be assigned to this plan. For sites
-            without multiple dunning campaigns enabled, the default dunning campaign
-            will always be used.
+      allOf:
+      - type: object
+        properties:
+          id:
+            type: string
+            title: Plan ID
+            description: This field has no effect on the request/response.
+            maxLength: 13
+            readOnly: true
+            deprecated: true
+          code:
+            "$ref": "#/components/schemas/PlanCode"
+          name:
+            "$ref": "#/components/schemas/PlanName"
+          currencies:
+            title: Pricing
+            description: Required only when `pricing_model` is `'fixed'`.
+            type: array
+            items:
+              "$ref": "#/components/schemas/PlanPricing"
+            minItems: 1
+          ramp_intervals:
+            type: array
+            title: Ramp Intervals
+            items:
+              "$ref": "#/components/schemas/PlanRampInterval"
+          setup_fees:
+            type: array
+            title: Setup Fees
+            items:
+              "$ref": "#/components/schemas/PlanSetupPricingCreate"
+      - "$ref": "#/components/schemas/PlanCommon"
     AddOnPricing:
       type: object
       properties:
@@ -22121,17 +22416,13 @@ components:
       type: object
       properties:
         currency:
-          type: string
-          title: Currency
-          description: 3-letter ISO 4217 currency code.
-          maxLength: 3
+          "$ref": "#/components/schemas/CurrencyCode"
         unit_amount:
-          type: number
-          format: float
-          title: Unit price
+          "$ref": "#/components/schemas/UnitAmount"
+          title: Unit Price
           description: Represents the price for the Ramp Interval.
-          minimum: 0
-          maximum: 1000000
+        price_segment_id:
+          "$ref": "#/components/schemas/PriceSegmentIdOrCode"
       required:
       - currency
       - unit_amount
@@ -22139,25 +22430,29 @@ components:
       type: object
       properties:
         currency:
-          type: string
-          title: Currency
-          description: 3-letter ISO 4217 currency code.
-          maxLength: 3
+          "$ref": "#/components/schemas/CurrencyCode"
         unit_amount:
-          type: number
-          format: float
-          title: Unit price
-          minimum: 0
-          maximum: 1000000
+          "$ref": "#/components/schemas/UnitAmount"
         tax_inclusive:
-          type: boolean
-          title: Tax Inclusive?
-          default: false
-          description: This field is deprecated. Please do not use it.
-          deprecated: true
+          "$ref": "#/components/schemas/TaxInclusive"
       required:
       - currency
       - unit_amount
+    PriceSegmentId:
+      type: string
+      description: The price segment ID, e.g. `e28zov4fw0v2`.
+      maxLength: 50
+    PriceSegmentCode:
+      type: string
+      description: The price segment code, e.g. `my-price-segment`.
+      maxLength: 50
+      pattern: "/^[a-z0-9_+-]+$/"
+    PriceSegmentIdOrCode:
+      type: string
+      description: The price segment ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`.
+        For requests, the code can also be used. Use prefix `code-`, e.g. `code-gold`.
+      maxLength: 55
+      pattern: "/^[a-z0-9_+-]+$/"
     Tier:
       type: object
       properties:
@@ -22240,6 +22535,22 @@ components:
       - full_amount
       - prorated_amount
       - none
+    SubscriptionCreateProrationSettings:
+      type: object
+      title: Proration Settings
+      description: Allows you to control how any resulting charges will be calculated
+        and prorated.
+      properties:
+        charge:
+          "$ref": "#/components/schemas/SubscriptionCreateProrationSettingsChargeEnum"
+    SubscriptionCreateProrationSettingsChargeEnum:
+      type: string
+      title: Charge
+      description: Determines how the amount charged is determined for this change
+      default: prorated_amount
+      enum:
+      - full_amount
+      - prorated_amount
     Settings:
       type: object
       properties:
@@ -22354,6 +22665,19 @@ components:
           format: float
           title: Tax In Cents
           description: The tax converted to the currency.
+        rate:
+          type: string
+          title: Rate
+          description: The conversion rate to the currency.
+        source:
+          type: string
+          title: Source
+          description: The source of the conversion rate.
+        date:
+          type: string
+          title: Date
+          format: date
+          description: The date of the conversion rate.
     ShippingAddressCreate:
       type: object
       properties:
@@ -22932,6 +23256,8 @@ components:
           description: Only for merchants using Recurly's In-The-Box taxes.
         tax_info:
           "$ref": "#/components/schemas/TaxInfo"
+        price_segment_id:
+          "$ref": "#/components/schemas/PriceSegmentIdOrCode"
         total:
           type: number
           format: float
@@ -22970,6 +23296,8 @@ components:
           default: 0
         net_terms_type:
           "$ref": "#/components/schemas/NetTermsTypeEnum"
+        credit_application_policy:
+          "$ref": "#/components/schemas/CreditApplicationPolicy"
         terms_and_conditions:
           type: string
           title: Terms and conditions
@@ -23428,6 +23756,13 @@ components:
             subscription.
           items:
             "$ref": "#/components/schemas/SubscriptionRampIntervalResponse"
+        next_bill_date:
+          type: string
+          format: date-time
+          title: Next bill date
+          description: If present, this sets the date the subscription's next billing
+            period will start (`current_period_ends_at`). When combined with proration_settings,
+            proration calculation should occur, only supported when timeframe is now.
     SubscriptionChangeBillingInfo:
       type: object
       description: Accept nested attributes for three_d_secure_action_result_token_id
@@ -23487,6 +23822,8 @@ components:
             when the `Multiple Business Entities` feature is enabled. If both `business_entity_id`
             and `business_entity_code` are present, `business_entity_id` will be used.
             Only allowed if the `timeframe` is not `now`.
+        price_segment_id:
+          "$ref": "#/components/schemas/PriceSegmentId"
         unit_amount:
           type: number
           format: float
@@ -23586,6 +23923,13 @@ components:
             "$ref": "#/components/schemas/SubscriptionRampInterval"
         proration_settings:
           "$ref": "#/components/schemas/ProrationSettings"
+        next_bill_date:
+          type: string
+          format: date-time
+          title: Next bill date
+          description: If present, this sets the date the subscription's next billing
+            period will start (`current_period_ends_at`). When combined with proration_settings,
+            proration calculation should occur, only supported when timeframe is now.
     SubscriptionChangeShippingCreate:
       type: object
       title: Shipping details that will be changed on a subscription
@@ -23655,6 +23999,8 @@ components:
             and `business_entity_code` are present, `business_entity_id` will be used.
         account:
           "$ref": "#/components/schemas/AccountCreate"
+        price_segment_id:
+          "$ref": "#/components/schemas/PriceSegmentId"
         billing_info_id:
           type: string
           title: Billing Info ID
@@ -23817,11 +24163,15 @@ components:
           default: 0
         net_terms_type:
           "$ref": "#/components/schemas/NetTermsTypeEnum"
+        credit_application_policy:
+          "$ref": "#/components/schemas/CreditApplicationPolicy"
         gateway_code:
           type: string
           title: Gateway Code
-          description: If present, this subscription's transactions will use the payment
-            gateway with this code.
+          description: If present, this subscription's subsequent transactions will
+            use the payment gateway with this code. To select a payment gateway to
+            use when creating a Subscription, be sure to set the `account.billing_info.gateway_code`
+            as well.
           maxLength: 13
         transaction_type:
           description: An optional type designation for the payment gateway transaction
@@ -23839,6 +24189,8 @@ components:
             second limit on creating subscriptions. Should only be used when creating
             subscriptions in bulk from the API.
           default: false
+        proration_settings:
+          "$ref": "#/components/schemas/SubscriptionCreateProrationSettings"
       required:
       - plan_code
       - currency
@@ -23862,6 +24214,8 @@ components:
             the subscription plan for the provided currency.
           minimum: 0
           maximum: 1000000
+        price_segment_id:
+          "$ref": "#/components/schemas/PriceSegmentIdOrCode"
         tax_inclusive:
           type: boolean
           title: Tax Inclusive?
@@ -23942,12 +24296,16 @@ components:
           description: The new set of ramp intervals for the subscription.
           items:
             "$ref": "#/components/schemas/SubscriptionRampInterval"
+        credit_application_policy:
+          "$ref": "#/components/schemas/CreditApplicationPolicy"
         bulk:
           type: boolean
           description: Optional field to be used only when needing to bypass the 60
             second limit on creating subscriptions. Should only be used when creating
             subscriptions in bulk from the API.
           default: false
+        proration_settings:
+          "$ref": "#/components/schemas/SubscriptionCreateProrationSettings"
       required:
       - plan_code
     SubscriptionUpdate:
@@ -24002,6 +24360,8 @@ components:
           description: For manual invoicing, this identifies the PO number associated
             with the subscription.
           maxLength: 50
+        price_segment_id:
+          "$ref": "#/components/schemas/PriceSegmentId"
         net_terms:
           type: integer
           title: Terms that the subscription is due on
@@ -24026,6 +24386,8 @@ components:
           default: 0
         net_terms_type:
           "$ref": "#/components/schemas/NetTermsTypeEnum"
+        credit_application_policy:
+          "$ref": "#/components/schemas/CreditApplicationPolicy"
         gateway_code:
           type: string
           title: Gateway Code
@@ -24105,6 +24467,11 @@ components:
           format: float
           title: Assigns the subscription's shipping cost. If this is greater than
             zero then a `method_id` or `method_code` is required.
+        expected_first_delivery_at:
+          type: string
+          format: date-time
+          title: Expected first delivery date
+          description: The expected date of the first delivery for the subscription.
     SubscriptionShippingUpdate:
       type: object
       title: Subscription shipping details
@@ -24143,6 +24510,11 @@ components:
           format: float
           title: Assigns the subscription's shipping cost. If this is greater than
             zero then a `method_id` or `method_code` is required.
+        expected_first_delivery_at:
+          type: string
+          format: date-time
+          title: Expected first delivery date
+          description: The expected date of the first delivery for the subscription.
     SubscriptionRampInterval:
       type: object
       title: Subscription Ramp Interval
@@ -24178,6 +24550,12 @@ components:
           format: float
           title: Unit price
           description: Represents the price for the ramp interval.
+    TaxInclusive:
+      type: boolean
+      title: Tax Inclusive?
+      default: false
+      description: This field is deprecated. Please do not use it.
+      deprecated: true
     TaxInfo:
       type: object
       title: Tax info
@@ -24207,11 +24585,11 @@ components:
         tax_details:
           type: array
           description: Provides additional tax details for Communications taxes when
-            Avalara for Communications is enabled or Canadian Sales Tax when there
-            is tax applied at both the country and province levels. This will only
-            be populated for the Invoice response when fetching a single invoice and
-            not for the InvoiceList or LineItemList. Only populated for a single LineItem
-            fetch when Avalara for Communications is enabled.
+            Avalara for Communications or Vertex Tax Breakdown is enabled or Canadian
+            Sales Tax. Tax details will only be populated for the Invoice response
+            when fetching a single invoice and not for the InvoiceList or LineItemList.
+            Only populated for a single LineItem fetch when Avalara for Communications
+            is enabled.
           items:
             "$ref": "#/components/schemas/TaxDetail"
     TaxDetail:
@@ -24222,8 +24600,8 @@ components:
           type: string
           title: Type
           description: Provides the tax type for the region or type of Comminications
-            tax when Avalara for Communications is enabled. For Canadian Sales Tax,
-            this will be GST, HST, QST or PST.
+            tax when Avalara for Communications or Vertex is enabled. For Canadian
+            Sales Tax, this will be GST, HST, QST or PST.
         region:
           type: string
           title: Region
@@ -24244,18 +24622,18 @@ components:
           type: string
           title: Name
           description: Provides the name of the Communications tax applied. Present
-            only when Avalara for Communications is enabled.
+            only when Avalara for Communications or Vertex is enabled.
         level:
           type: string
           title: Level
           description: Provides the jurisdiction level for the Communications tax
             applied. Example values include city, state and federal. Present only
-            when Avalara for Communications is enabled.
+            when Avalara for Communications or Vertex is enabled.
         billable:
           type: boolean
           title: Billable
           description: Whether or not the line item is taxable. Only populated for
-            a single LineItem fetch when Avalara for Communications is enabled.
+            a single LineItem fetch when Avalara for Communications or Vertex is enabled.
     Transaction:
       type: object
       properties:
@@ -24453,6 +24831,22 @@ components:
           title: VAT Number
         fraud_info:
           "$ref": "#/components/schemas/TransactionFraudInfo"
+        next_action:
+          type: object
+          x-class-name: TransactionNextAction
+          description: Next action values are used for any required customer follow-up
+            action. Currently, this is supported for Ebanx when using Pix Automatico.
+          properties:
+            type:
+              type: string
+              title: Next action type
+              description: The type of next action required.
+              "$ref": "#/components/schemas/NextActionTypeEnum"
+            value:
+              type: string
+              title: Next action value
+              description: The value associated with the next action type.
+          title: Next action
     TransactionFraudInfo:
       type: object
       title: Fraud information
@@ -24603,6 +24997,11 @@ components:
           title: Begin time query parameter
           description: The date-time to be included when listing UniqueCouponCodes
           format: date-time
+    UnitAmount:
+      type: number
+      format: float
+      minimum: 0
+      maximum: 1000000
     Usage:
       type: object
       properties:
@@ -24827,6 +25226,8 @@ components:
           default: 0
         net_terms_type:
           "$ref": "#/components/schemas/NetTermsTypeEnum"
+        credit_application_policy_override:
+          "$ref": "#/components/schemas/CreditApplicationPolicy"
         terms_and_conditions:
           type: string
           title: Terms and conditions
@@ -24842,6 +25243,15 @@ components:
                 "$ref": "#/components/schemas/Transaction/properties/initiator"
               merchant_reason_code:
                 "$ref": "#/components/schemas/Transaction/properties/merchant_reason_code"
+              skip_gateway_fraud:
+                type: boolean
+                title: Skip Gateway Fraud
+                description: When set to `true`, instructs the payment gateway to
+                  skip fraud checks for this transaction. This is useful for recurring
+                  transactions where fraud checks have already been performed on the
+                  initial transaction. Note that not all gateways support this feature.
+                  For Stripe, this skips Radar fraud rules; for Adyen, this skips
+                  Risk checks.
         customer_notes:
           type: string
           title: Customer notes
@@ -24849,6 +25259,8 @@ components:
           type: string
           title: VAT reverse charge notes
           description: VAT reverse charge notes for cross border European tax settlement.
+        vertex_transaction_type:
+          "$ref": "#/components/schemas/VertexTransactionTypeEnum"
         credit_customer_notes:
           type: string
           title: Credit customer notes
@@ -25021,6 +25433,7 @@ components:
           format: date-time
           description: When the current settings were updated in Recurly.
     DunningInterval:
+      type: object
       properties:
         days:
           type: integer
@@ -25045,6 +25458,7 @@ components:
           items:
             type: string
     DunningCampaignsBulkUpdateResponse:
+      type: object
       properties:
         object:
           type: string
@@ -25898,6 +26312,7 @@ components:
           format: date-time
           description: When the invoice template was updated in Recurly.
     PaymentMethod:
+      type: object
       properties:
         object:
           "$ref": "#/components/schemas/PaymentMethodEnum"
@@ -26262,6 +26677,11 @@ components:
           type: string
           description: 3-letter ISO 4217 currency code.
           maxLength: 3
+        tax_service_opt_out:
+          title: Tax service opt-out
+          type: boolean
+          description: Set to `true` to bypass sending the purchase to your configured
+            tax service. Defaults to `false`.
         delivery:
           title: Delivery details
           description: The delivery details for the gift card.
@@ -26526,6 +26946,15 @@ components:
       enum:
       - charge
       - credit
+    VertexTransactionTypeEnum:
+      type: string
+      title: Vertex Transaction Type
+      description: Used by Vertex for tax calculations. Possible values are sale,
+        rental, lease.
+      enum:
+      - sale
+      - rental
+      - lease
     FilterTransactionTypeEnum:
       type: string
       enum:
@@ -26821,14 +27250,69 @@ components:
       default: all
       enum:
       - pending
+      - processing
       - past_due
       - paid
       - failed
+      - open
+      - closed
+      - voided
     CollectionMethodEnum:
       type: string
       enum:
       - automatic
       - manual
+    CreditApplicationPolicy:
+      type: object
+      title: Credit Application Policy
+      description: |
+        Controls whether credit invoices are automatically applied to new invoices.
+        The `mode` field determines the application behavior. When mode is `all`,
+        the optional `allowed_origins` array can restrict which credit invoice origins
+        are applied.
+      properties:
+        mode:
+          "$ref": "#/components/schemas/CreditApplicationModeEnum"
+        allowed_origins:
+          type: array
+          description: |
+            Optional array of credit invoice origin types to allow when mode is `all`.
+            If not specified when mode is `all`, credits from all origins are applied.
+            Only valid when mode is `all`.
+          items:
+            "$ref": "#/components/schemas/CreditApplicationAllowedOriginTypeEnum"
+      required:
+      - mode
+    CreditApplicationModeEnum:
+      type: string
+      title: Credit Application Mode
+      description: |
+        Determines which credit invoices are applied to invoices:
+        - `all`: All available credit invoices are applied (default)
+        - `none`: No credit invoices are applied automatically
+      enum:
+      - all
+      - none
+      default: all
+    CreditApplicationAllowedOriginTypeEnum:
+      type: string
+      title: Credit Application Allowed Origin Type
+      description: The origin type of a credit invoice that can be allowed in a credit
+        application policy
+      enum:
+      - line_item_refund
+      - open_amount_refund
+      - immediate_change
+      - termination
+      - credit
+      - write_off
+      - refund
+      - external_refund
+      - carryforward_credit
+      - usage_correction
+      - prepayment
+      - gift_card
+      - carryforward_gift_credit
     InvoiceRefundTypeEnum:
       type: string
       enum:
@@ -26854,9 +27338,11 @@ components:
       - credit_card
       - eft
       - google_pay
+      - mercadopago
       - money_order
       - other
       - paypal
+      - pix_automatico
       - roku
       - sepadirectdebit
       - wire_transfer
@@ -26994,6 +27480,11 @@ components:
       - scheduled
       - success
       - void
+    NextActionTypeEnum:
+      type: string
+      description: The type of next action required for the transaction.
+      enum:
+      - qr_code
     CvvCheckEnum:
       type: string
       enum:
@@ -27048,6 +27539,7 @@ components:
       - amazon
       - amazon_billing_agreement
       - apple_pay
+      - apple_pay_merchant_token
       - bank_account_info
       - braintree_apple_pay
       - check
@@ -27055,6 +27547,7 @@ components:
       - eft
       - gateway_token
       - google_pay
+      - google_pay_device_pan
       - iban_bank_account
       - money_order
       - other
@@ -27068,6 +27561,10 @@ components:
       - boleto
       - cash_app
       - upi_autopay
+      - pix_automatico
+      - mercadopago
+      - klarna
+      - braintree_google_pay
     CardTypeEnum:
       type: string
       enum:
@@ -27393,10 +27890,12 @@ components:
     AchTypeEnum:
       type: string
       description: The payment method type for a non-credit card based billing info.
-        `bacs` and `becs` are the only accepted values.
+        `bacs`, `becs`, `pix-automatico`, `mercadopago` are the only accepted values.
       enum:
       - bacs
       - becs
+      - pix-automatico
+      - mercadopago
     AchAccountTypeEnum:
       type: string
       description: The bank account type. (ACH only)

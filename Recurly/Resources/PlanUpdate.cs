@@ -43,7 +43,7 @@ namespace Recurly.Resources
         [JsonProperty("code")]
         public string Code { get; set; }
 
-        /// <value>Optional when the pricing model is 'ramp'.</value>
+        /// <value>Required only when `pricing_model` is `'fixed'`.</value>
         [JsonProperty("currencies")]
         public List<PlanPricing> Currencies { get; set; }
 
@@ -59,11 +59,15 @@ namespace Recurly.Resources
         [JsonProperty("dunning_campaign_id")]
         public string DunningCampaignId { get; set; }
 
+        /// <value>The Harmonized System (HS) code is an internationally standardized system of names and numbers to classify traded products. The HS code, sometimes called Commodity Code, is used by customs authorities around the world to identify products when assessing duties and taxes. The HS code may also be referred to as the tariff code or customs code. Values should contain only digits and decimals.</value>
+        [JsonProperty("harmonized_system_code")]
+        public string HarmonizedSystemCode { get; set; }
+
         /// <value>Hosted pages settings</value>
         [JsonProperty("hosted_pages")]
         public PlanHostedPages HostedPages { get; set; }
 
-        /// <value>Plan ID</value>
+        /// <value>This field has no effect on the request/response.</value>
         [JsonProperty("id")]
         public string Id { get; set; }
 
@@ -137,6 +141,10 @@ namespace Recurly.Resources
         [JsonConverter(typeof(RecurlyStringEnumConverter))]
         public Constants.RevenueScheduleType? SetupFeeRevenueScheduleType { get; set; }
 
+        /// <value>Setup Fees</value>
+        [JsonProperty("setup_fees")]
+        public List<PlanSetupPricingCreate> SetupFees { get; set; }
+
         /// <value>Optional field used by Avalara, Vertex, and Recurly's In-the-Box tax solution to determine taxation rules. You can pass in specific tax codes using any of these tax integrations. For Recurly's In-the-Box tax offering you can also choose to instead use simple values of `unknown`, `physical`, or `digital` tax codes.</value>
         [JsonProperty("tax_code")]
         public string TaxCode { get; set; }
@@ -145,7 +153,7 @@ namespace Recurly.Resources
         [JsonProperty("tax_exempt")]
         public bool? TaxExempt { get; set; }
 
-        /// <value>Automatically terminate plans after a defined number of billing cycles.</value>
+        /// <value>Automatically terminate subscriptions after a defined number of billing cycles. Number of billing cycles before the plan automatically stops renewing, defaults to `null` for continuous, automatic renewal.</value>
         [JsonProperty("total_billing_cycles")]
         public int? TotalBillingCycles { get; set; }
 

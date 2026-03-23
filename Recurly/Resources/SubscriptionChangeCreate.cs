@@ -82,6 +82,10 @@ namespace Recurly.Resources
         [JsonConverter(typeof(RecurlyStringEnumConverter))]
         public Constants.NetTermsType? NetTermsType { get; set; }
 
+        /// <value>If present, this sets the date the subscription's next billing period will start (`current_period_ends_at`). When combined with proration_settings, proration calculation should occur, only supported when timeframe is now.</value>
+        [JsonProperty("next_bill_date")]
+        public DateTime? NextBillDate { get; set; }
+
         /// <value>If you want to change to a new plan, you can provide the plan's code or id. If both are provided the `plan_id` will be used.</value>
         [JsonProperty("plan_code")]
         public string PlanCode { get; set; }
@@ -93,6 +97,10 @@ namespace Recurly.Resources
         /// <value>For manual invoicing, this identifies the PO number associated with the subscription.</value>
         [JsonProperty("po_number")]
         public string PoNumber { get; set; }
+
+        /// <value>The price segment ID, e.g. `e28zov4fw0v2`.</value>
+        [JsonProperty("price_segment_id")]
+        public string PriceSegmentId { get; set; }
 
         /// <value>Allows you to control how any resulting charges and credits will be calculated and prorated.</value>
         [JsonProperty("proration_settings")]

@@ -28,6 +28,15 @@ namespace Recurly.Resources
         [JsonConverter(typeof(RecurlyStringEnumConverter))]
         public Constants.CollectionMethod? CollectionMethod { get; set; }
 
+        /// <value>
+        /// Controls whether credit invoices are automatically applied to new invoices.
+        /// The `mode` field determines the application behavior. When mode is `all`,
+        /// the optional `allowed_origins` array can restrict which credit invoice origins
+        /// are applied.
+        /// </value>
+        [JsonProperty("credit_application_policy")]
+        public CreditApplicationPolicy CreditApplicationPolicy { get; set; }
+
         /// <value>The custom fields will only be altered when they are included in a request. Sending an empty array will not remove any existing values. To remove a field send the name with a null or empty value.</value>
         [JsonProperty("custom_fields")]
         public List<CustomField> CustomFields { get; set; }
@@ -76,6 +85,10 @@ namespace Recurly.Resources
         /// <value>For manual invoicing, this identifies the PO number associated with the subscription.</value>
         [JsonProperty("po_number")]
         public string PoNumber { get; set; }
+
+        /// <value>The price segment ID, e.g. `e28zov4fw0v2`.</value>
+        [JsonProperty("price_segment_id")]
+        public string PriceSegmentId { get; set; }
 
         /// <value>The remaining billing cycles in the current term.</value>
         [JsonProperty("remaining_billing_cycles")]

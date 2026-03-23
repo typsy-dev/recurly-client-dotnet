@@ -23,7 +23,7 @@ namespace Recurly.Resources
         [JsonProperty("tax_inclusive")]
         public bool? TaxInclusive { get; set; }
 
-        /// <value>Unit price</value>
+
         [JsonProperty("unit_amount")]
         public decimal? UnitAmount { get; set; }
 

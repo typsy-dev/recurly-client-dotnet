@@ -47,7 +47,7 @@ namespace Recurly.Resources
         [JsonProperty("created_at")]
         public DateTime? CreatedAt { get; set; }
 
-        /// <value>Pricing</value>
+        /// <value>Present only when `pricing_model` is `'fixed'`.</value>
         [JsonProperty("currencies")]
         public List<PlanPricing> Currencies { get; set; }
 
@@ -67,6 +67,10 @@ namespace Recurly.Resources
         [JsonProperty("dunning_campaign_id")]
         public string DunningCampaignId { get; set; }
 
+        /// <value>The Harmonized System (HS) code is an internationally standardized system of names and numbers to classify traded products. The HS code, sometimes called Commodity Code, is used by customs authorities around the world to identify products when assessing duties and taxes. The HS code may also be referred to as the tariff code or customs code. Values should contain only digits and decimals.</value>
+        [JsonProperty("harmonized_system_code")]
+        public string HarmonizedSystemCode { get; set; }
+
         /// <value>Hosted pages settings</value>
         [JsonProperty("hosted_pages")]
         public PlanHostedPages HostedPages { get; set; }
@@ -84,6 +88,14 @@ namespace Recurly.Resources
         [JsonConverter(typeof(RecurlyStringEnumConverter))]
         public Constants.IntervalUnit? IntervalUnit { get; set; }
 
+        /// <value>
+        /// The ID of a general ledger account. General ledger accounts are
+        /// only accessible as a part of the Recurly RevRec Standard and
+        /// Recurly RevRec Advanced features.
+        /// </value>
+        [JsonProperty("liability_gl_account_id")]
+        public string LiabilityGlAccountId { get; set; }
+
         /// <value>This name describes your plan and will appear on the Hosted Payment Page and the subscriber's invoice.</value>
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -91,6 +103,14 @@ namespace Recurly.Resources
         /// <value>Object type</value>
         [JsonProperty("object")]
         public string Object { get; set; }
+
+        /// <value>
+        /// The ID of a performance obligation. Performance obligations are
+        /// only accessible as a part of the Recurly RevRec Standard and
+        /// Recurly RevRec Advanced features.
+        /// </value>
+        [JsonProperty("performance_obligation_id")]
+        public string PerformanceObligationId { get; set; }
 
         /// <value>
         /// A fixed pricing model has the same price for each billing period.
@@ -105,6 +125,14 @@ namespace Recurly.Resources
         [JsonProperty("ramp_intervals")]
         public List<PlanRampInterval> RampIntervals { get; set; }
 
+        /// <value>
+        /// The ID of a general ledger account. General ledger accounts are
+        /// only accessible as a part of the Recurly RevRec Standard and
+        /// Recurly RevRec Advanced features.
+        /// </value>
+        [JsonProperty("revenue_gl_account_id")]
+        public string RevenueGlAccountId { get; set; }
+
         /// <value>Revenue schedule type</value>
         [JsonProperty("revenue_schedule_type")]
         [JsonConverter(typeof(RecurlyStringEnumConverter))]
@@ -114,10 +142,38 @@ namespace Recurly.Resources
         [JsonProperty("setup_fee_accounting_code")]
         public string SetupFeeAccountingCode { get; set; }
 
+        /// <value>
+        /// The ID of a general ledger account. General ledger accounts are
+        /// only accessible as a part of the Recurly RevRec Standard and
+        /// Recurly RevRec Advanced features.
+        /// </value>
+        [JsonProperty("setup_fee_liability_gl_account_id")]
+        public string SetupFeeLiabilityGlAccountId { get; set; }
+
+        /// <value>
+        /// The ID of a performance obligation. Performance obligations are
+        /// only accessible as a part of the Recurly RevRec Standard and
+        /// Recurly RevRec Advanced features.
+        /// </value>
+        [JsonProperty("setup_fee_performance_obligation_id")]
+        public string SetupFeePerformanceObligationId { get; set; }
+
+        /// <value>
+        /// The ID of a general ledger account. General ledger accounts are
+        /// only accessible as a part of the Recurly RevRec Standard and
+        /// Recurly RevRec Advanced features.
+        /// </value>
+        [JsonProperty("setup_fee_revenue_gl_account_id")]
+        public string SetupFeeRevenueGlAccountId { get; set; }
+
         /// <value>Setup fee revenue schedule type</value>
         [JsonProperty("setup_fee_revenue_schedule_type")]
         [JsonConverter(typeof(RecurlyStringEnumConverter))]
         public Constants.RevenueScheduleType? SetupFeeRevenueScheduleType { get; set; }
+
+        /// <value>Setup Fees</value>
+        [JsonProperty("setup_fees")]
+        public List<PlanSetupPricing> SetupFees { get; set; }
 
         /// <value>The current state of the plan.</value>
         [JsonProperty("state")]

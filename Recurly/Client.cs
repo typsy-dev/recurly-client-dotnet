@@ -727,6 +727,74 @@ namespace Recurly
 
 
         /// <summary>
+        /// Verify a billing information's credit card <see href="https://developers.recurly.com/api/v2021-02-25#operation/verify_billing_infos">verify_billing_infos api documentation</see>
+        /// </summary>
+        /// <param name="VerifyBillingInfosParams">Optional Parameters for the request</param>
+        /// <returns>
+        /// Transaction information from verify.
+        /// </returns>
+        /// <exception cref="Recurly.Errors.ApiError">Thrown when the request is invalid.</exception>
+        public Transaction VerifyBillingInfos(string accountId, string billingInfoId, BillingInfoVerify body = null, RequestOptions options = null)
+        {
+            var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "billing_info_id", billingInfoId } };
+            var url = this.InterpolatePath("/accounts/{account_id}/billing_infos/{billing_info_id}/verify", urlParams);
+            return MakeRequest<Transaction>(Method.POST, url, body, null, options);
+        }
+
+
+
+        /// <summary>
+        /// Verify a billing information's credit card <see href="https://developers.recurly.com/api/v2021-02-25#operation/verify_billing_infos">verify_billing_infos api documentation</see>
+        /// </summary>
+        /// <param name="VerifyBillingInfosParams">Optional Parameters for the request</param>
+        /// <returns>
+        /// Transaction information from verify.
+        /// </returns>
+        /// <exception cref="Recurly.Errors.ApiError">Thrown when the request is invalid.</exception>
+        public Task<Transaction> VerifyBillingInfosAsync(string accountId, string billingInfoId, BillingInfoVerify body = null, CancellationToken cancellationToken = default(CancellationToken), RequestOptions options = null)
+        {
+            var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "billing_info_id", billingInfoId } };
+            var url = this.InterpolatePath("/accounts/{account_id}/billing_infos/{billing_info_id}/verify", urlParams);
+            return MakeRequestAsync<Transaction>(Method.POST, url, body, null, options, cancellationToken);
+        }
+
+
+
+        /// <summary>
+        /// Verify a billing information's credit card cvv <see href="https://developers.recurly.com/api/v2021-02-25#operation/verify_billing_infos_cvv">verify_billing_infos_cvv api documentation</see>
+        /// </summary>
+        /// <param name="VerifyBillingInfosCvvParams">Optional Parameters for the request</param>
+        /// <returns>
+        /// Transaction information from verify.
+        /// </returns>
+        /// <exception cref="Recurly.Errors.ApiError">Thrown when the request is invalid.</exception>
+        public Transaction VerifyBillingInfosCvv(string accountId, string billingInfoId, BillingInfoVerifyCVV body, RequestOptions options = null)
+        {
+            var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "billing_info_id", billingInfoId } };
+            var url = this.InterpolatePath("/accounts/{account_id}/billing_infos/{billing_info_id}/verify_cvv", urlParams);
+            return MakeRequest<Transaction>(Method.POST, url, body, null, options);
+        }
+
+
+
+        /// <summary>
+        /// Verify a billing information's credit card cvv <see href="https://developers.recurly.com/api/v2021-02-25#operation/verify_billing_infos_cvv">verify_billing_infos_cvv api documentation</see>
+        /// </summary>
+        /// <param name="VerifyBillingInfosCvvParams">Optional Parameters for the request</param>
+        /// <returns>
+        /// Transaction information from verify.
+        /// </returns>
+        /// <exception cref="Recurly.Errors.ApiError">Thrown when the request is invalid.</exception>
+        public Task<Transaction> VerifyBillingInfosCvvAsync(string accountId, string billingInfoId, BillingInfoVerifyCVV body, CancellationToken cancellationToken = default(CancellationToken), RequestOptions options = null)
+        {
+            var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "billing_info_id", billingInfoId } };
+            var url = this.InterpolatePath("/accounts/{account_id}/billing_infos/{billing_info_id}/verify_cvv", urlParams);
+            return MakeRequestAsync<Transaction>(Method.POST, url, body, null, options, cancellationToken);
+        }
+
+
+
+        /// <summary>
         /// List the coupon redemptions for an account <see href="https://developers.recurly.com/api/v2021-02-25#operation/list_account_coupon_redemptions">list_account_coupon_redemptions api documentation</see>
         /// </summary>
         /// <param name="ListAccountCouponRedemptionsParams">Optional Parameters for the request</param>
@@ -827,6 +895,74 @@ namespace Recurly
             var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
             var url = this.InterpolatePath("/accounts/{account_id}/coupon_redemptions/active", urlParams);
             return MakeRequestAsync<CouponRedemption>(Method.Delete, url, null, null, options, cancellationToken);
+        }
+
+
+
+        /// <summary>
+        /// Show the coupon redemption <see href="https://developers.recurly.com/api/v2021-02-25#operation/get_coupon_redemption">get_coupon_redemption api documentation</see>
+        /// </summary>
+        /// <param name="GetCouponRedemptionParams">Optional Parameters for the request</param>
+        /// <returns>
+        /// A coupon redemption.
+        /// </returns>
+        /// <exception cref="Recurly.Errors.ApiError">Thrown when the request is invalid.</exception>
+        public CouponRedemption GetCouponRedemption(string accountId, string couponRedemptionId, RequestOptions options = null)
+        {
+            var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "coupon_redemption_id", couponRedemptionId } };
+            var url = this.InterpolatePath("/accounts/{account_id}/coupon_redemptions/{coupon_redemption_id}", urlParams);
+            return MakeRequest<CouponRedemption>(Method.GET, url, null, null, options);
+        }
+
+
+
+        /// <summary>
+        /// Show the coupon redemption <see href="https://developers.recurly.com/api/v2021-02-25#operation/get_coupon_redemption">get_coupon_redemption api documentation</see>
+        /// </summary>
+        /// <param name="GetCouponRedemptionParams">Optional Parameters for the request</param>
+        /// <returns>
+        /// A coupon redemption.
+        /// </returns>
+        /// <exception cref="Recurly.Errors.ApiError">Thrown when the request is invalid.</exception>
+        public Task<CouponRedemption> GetCouponRedemptionAsync(string accountId, string couponRedemptionId, CancellationToken cancellationToken = default(CancellationToken), RequestOptions options = null)
+        {
+            var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "coupon_redemption_id", couponRedemptionId } };
+            var url = this.InterpolatePath("/accounts/{account_id}/coupon_redemptions/{coupon_redemption_id}", urlParams);
+            return MakeRequestAsync<CouponRedemption>(Method.GET, url, null, null, options, cancellationToken);
+        }
+
+
+
+        /// <summary>
+        /// Delete the coupon redemption <see href="https://developers.recurly.com/api/v2021-02-25#operation/remove_coupon_redemption_by_id">remove_coupon_redemption_by_id api documentation</see>
+        /// </summary>
+        /// <param name="RemoveCouponRedemptionByIdParams">Optional Parameters for the request</param>
+        /// <returns>
+        /// Coupon redemption deleted.
+        /// </returns>
+        /// <exception cref="Recurly.Errors.ApiError">Thrown when the request is invalid.</exception>
+        public CouponRedemption RemoveCouponRedemptionById(string accountId, string couponRedemptionId, RequestOptions options = null)
+        {
+            var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "coupon_redemption_id", couponRedemptionId } };
+            var url = this.InterpolatePath("/accounts/{account_id}/coupon_redemptions/{coupon_redemption_id}", urlParams);
+            return MakeRequest<CouponRedemption>(Method.DELETE, url, null, null, options);
+        }
+
+
+
+        /// <summary>
+        /// Delete the coupon redemption <see href="https://developers.recurly.com/api/v2021-02-25#operation/remove_coupon_redemption_by_id">remove_coupon_redemption_by_id api documentation</see>
+        /// </summary>
+        /// <param name="RemoveCouponRedemptionByIdParams">Optional Parameters for the request</param>
+        /// <returns>
+        /// Coupon redemption deleted.
+        /// </returns>
+        /// <exception cref="Recurly.Errors.ApiError">Thrown when the request is invalid.</exception>
+        public Task<CouponRedemption> RemoveCouponRedemptionByIdAsync(string accountId, string couponRedemptionId, CancellationToken cancellationToken = default(CancellationToken), RequestOptions options = null)
+        {
+            var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "coupon_redemption_id", couponRedemptionId } };
+            var url = this.InterpolatePath("/accounts/{account_id}/coupon_redemptions/{coupon_redemption_id}", urlParams);
+            return MakeRequestAsync<CouponRedemption>(Method.DELETE, url, null, null, options, cancellationToken);
         }
 
 
@@ -1183,6 +1319,40 @@ namespace Recurly
 
 
         /// <summary>
+        /// Create an account note <see href="https://developers.recurly.com/api/v2021-02-25#operation/create_account_note">create_account_note api documentation</see>
+        /// </summary>
+        /// <param name="CreateAccountNoteParams">Optional Parameters for the request</param>
+        /// <returns>
+        /// An account note.
+        /// </returns>
+        /// <exception cref="Recurly.Errors.ApiError">Thrown when the request is invalid.</exception>
+        public AccountNote CreateAccountNote(string accountId, AccountNoteCreate body, RequestOptions options = null)
+        {
+            var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
+            var url = this.InterpolatePath("/accounts/{account_id}/notes", urlParams);
+            return MakeRequest<AccountNote>(Method.POST, url, body, null, options);
+        }
+
+
+
+        /// <summary>
+        /// Create an account note <see href="https://developers.recurly.com/api/v2021-02-25#operation/create_account_note">create_account_note api documentation</see>
+        /// </summary>
+        /// <param name="CreateAccountNoteParams">Optional Parameters for the request</param>
+        /// <returns>
+        /// An account note.
+        /// </returns>
+        /// <exception cref="Recurly.Errors.ApiError">Thrown when the request is invalid.</exception>
+        public Task<AccountNote> CreateAccountNoteAsync(string accountId, AccountNoteCreate body, CancellationToken cancellationToken = default(CancellationToken), RequestOptions options = null)
+        {
+            var urlParams = new Dictionary<string, object> { { "account_id", accountId } };
+            var url = this.InterpolatePath("/accounts/{account_id}/notes", urlParams);
+            return MakeRequestAsync<AccountNote>(Method.POST, url, body, null, options, cancellationToken);
+        }
+
+
+
+        /// <summary>
         /// Fetch an account note <see href="https://developers.recurly.com/api/v2021-02-25#operation/get_account_note">get_account_note api documentation</see>
         /// </summary>
         /// <param name="GetAccountNoteParams">Optional Parameters for the request</param>
@@ -1212,6 +1382,40 @@ namespace Recurly
             var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "account_note_id", accountNoteId } };
             var url = this.InterpolatePath("/accounts/{account_id}/notes/{account_note_id}", urlParams);
             return MakeRequestAsync<AccountNote>(Method.Get, url, null, null, options, cancellationToken);
+        }
+
+
+
+        /// <summary>
+        /// Delete an account note <see href="https://developers.recurly.com/api/v2021-02-25#operation/remove_account_note">remove_account_note api documentation</see>
+        /// </summary>
+        /// <param name="RemoveAccountNoteParams">Optional Parameters for the request</param>
+        /// <returns>
+        /// Account note deleted.
+        /// </returns>
+        /// <exception cref="Recurly.Errors.ApiError">Thrown when the request is invalid.</exception>
+        public EmptyResource RemoveAccountNote(string accountId, string accountNoteId, RequestOptions options = null)
+        {
+            var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "account_note_id", accountNoteId } };
+            var url = this.InterpolatePath("/accounts/{account_id}/notes/{account_note_id}", urlParams);
+            return MakeRequest<EmptyResource>(Method.DELETE, url, null, null, options);
+        }
+
+
+
+        /// <summary>
+        /// Delete an account note <see href="https://developers.recurly.com/api/v2021-02-25#operation/remove_account_note">remove_account_note api documentation</see>
+        /// </summary>
+        /// <param name="RemoveAccountNoteParams">Optional Parameters for the request</param>
+        /// <returns>
+        /// Account note deleted.
+        /// </returns>
+        /// <exception cref="Recurly.Errors.ApiError">Thrown when the request is invalid.</exception>
+        public Task<EmptyResource> RemoveAccountNoteAsync(string accountId, string accountNoteId, CancellationToken cancellationToken = default(CancellationToken), RequestOptions options = null)
+        {
+            var urlParams = new Dictionary<string, object> { { "account_id", accountId }, { "account_note_id", accountNoteId } };
+            var url = this.InterpolatePath("/accounts/{account_id}/notes/{account_note_id}", urlParams);
+            return MakeRequestAsync<EmptyResource>(Method.DELETE, url, null, null, options, cancellationToken);
         }
 
 
@@ -3628,6 +3832,59 @@ namespace Recurly
 
 
         /// <summary>
+        /// List a site's price segments <see href="https://developers.recurly.com/api/v2021-02-25#operation/list_price_segments">list_price_segments api documentation</see>
+        /// </summary>
+        /// <param name="ListPriceSegmentsParams">Optional Parameters for the request</param>
+        /// <returns>
+        /// A list of price segments.
+        /// </returns>
+        public Pager<PriceSegment> ListPriceSegments(ListPriceSegmentsParams optionalParams = null, RequestOptions options = null)
+        {
+            var urlParams = new Dictionary<string, object> { };
+            var queryParams = (optionalParams ?? new ListPriceSegmentsParams()).ToDictionary();
+            var url = this.InterpolatePath("/price_segments", urlParams);
+            return Pager<PriceSegment>.Build(url, queryParams, options, this);
+        }
+
+
+
+
+
+        /// <summary>
+        /// Fetch a price segment <see href="https://developers.recurly.com/api/v2021-02-25#operation/get_price_segment">get_price_segment api documentation</see>
+        /// </summary>
+        /// <param name="GetPriceSegmentParams">Optional Parameters for the request</param>
+        /// <returns>
+        /// A price segment.
+        /// </returns>
+        /// <exception cref="Recurly.Errors.ApiError">Thrown when the request is invalid.</exception>
+        public PriceSegment GetPriceSegment(string priceSegmentId, RequestOptions options = null)
+        {
+            var urlParams = new Dictionary<string, object> { { "price_segment_id", priceSegmentId } };
+            var url = this.InterpolatePath("/price_segments/{price_segment_id}", urlParams);
+            return MakeRequest<PriceSegment>(Method.GET, url, null, null, options);
+        }
+
+
+
+        /// <summary>
+        /// Fetch a price segment <see href="https://developers.recurly.com/api/v2021-02-25#operation/get_price_segment">get_price_segment api documentation</see>
+        /// </summary>
+        /// <param name="GetPriceSegmentParams">Optional Parameters for the request</param>
+        /// <returns>
+        /// A price segment.
+        /// </returns>
+        /// <exception cref="Recurly.Errors.ApiError">Thrown when the request is invalid.</exception>
+        public Task<PriceSegment> GetPriceSegmentAsync(string priceSegmentId, CancellationToken cancellationToken = default(CancellationToken), RequestOptions options = null)
+        {
+            var urlParams = new Dictionary<string, object> { { "price_segment_id", priceSegmentId } };
+            var url = this.InterpolatePath("/price_segments/{price_segment_id}", urlParams);
+            return MakeRequestAsync<PriceSegment>(Method.GET, url, null, null, options, cancellationToken);
+        }
+
+
+
+        /// <summary>
         /// List a site's add-ons <see href="https://developers.recurly.com/api/v2021-02-25#operation/list_add_ons">list_add_ons api documentation</see>
         /// </summary>
         /// <param name="ListAddOnsParams">Optional Parameters for the request</param>
@@ -4386,6 +4643,74 @@ namespace Recurly
         }
 
 
+
+
+
+        /// <summary>
+        /// Show the coupon redemption for a subscription <see href="https://developers.recurly.com/api/v2021-02-25#operation/get_subscription_coupon_redemption">get_subscription_coupon_redemption api documentation</see>
+        /// </summary>
+        /// <param name="GetSubscriptionCouponRedemptionParams">Optional Parameters for the request</param>
+        /// <returns>
+        /// The coupon redemption on a subscription.
+        /// </returns>
+        /// <exception cref="Recurly.Errors.ApiError">Thrown when the request is invalid.</exception>
+        public CouponRedemption GetSubscriptionCouponRedemption(string subscriptionId, string couponRedemptionId, RequestOptions options = null)
+        {
+            var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId }, { "coupon_redemption_id", couponRedemptionId } };
+            var url = this.InterpolatePath("/subscriptions/{subscription_id}/coupon_redemptions/{coupon_redemption_id}", urlParams);
+            return MakeRequest<CouponRedemption>(Method.GET, url, null, null, options);
+        }
+
+
+
+        /// <summary>
+        /// Show the coupon redemption for a subscription <see href="https://developers.recurly.com/api/v2021-02-25#operation/get_subscription_coupon_redemption">get_subscription_coupon_redemption api documentation</see>
+        /// </summary>
+        /// <param name="GetSubscriptionCouponRedemptionParams">Optional Parameters for the request</param>
+        /// <returns>
+        /// The coupon redemption on a subscription.
+        /// </returns>
+        /// <exception cref="Recurly.Errors.ApiError">Thrown when the request is invalid.</exception>
+        public Task<CouponRedemption> GetSubscriptionCouponRedemptionAsync(string subscriptionId, string couponRedemptionId, CancellationToken cancellationToken = default(CancellationToken), RequestOptions options = null)
+        {
+            var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId }, { "coupon_redemption_id", couponRedemptionId } };
+            var url = this.InterpolatePath("/subscriptions/{subscription_id}/coupon_redemptions/{coupon_redemption_id}", urlParams);
+            return MakeRequestAsync<CouponRedemption>(Method.GET, url, null, null, options, cancellationToken);
+        }
+
+
+
+        /// <summary>
+        /// Delete the coupon redemption from a subscription <see href="https://developers.recurly.com/api/v2021-02-25#operation/remove_subscription_coupon_redemption">remove_subscription_coupon_redemption api documentation</see>
+        /// </summary>
+        /// <param name="RemoveSubscriptionCouponRedemptionParams">Optional Parameters for the request</param>
+        /// <returns>
+        /// Coupon redemption deleted.
+        /// </returns>
+        /// <exception cref="Recurly.Errors.ApiError">Thrown when the request is invalid.</exception>
+        public CouponRedemption RemoveSubscriptionCouponRedemption(string subscriptionId, string couponRedemptionId, RequestOptions options = null)
+        {
+            var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId }, { "coupon_redemption_id", couponRedemptionId } };
+            var url = this.InterpolatePath("/subscriptions/{subscription_id}/coupon_redemptions/{coupon_redemption_id}", urlParams);
+            return MakeRequest<CouponRedemption>(Method.DELETE, url, null, null, options);
+        }
+
+
+
+        /// <summary>
+        /// Delete the coupon redemption from a subscription <see href="https://developers.recurly.com/api/v2021-02-25#operation/remove_subscription_coupon_redemption">remove_subscription_coupon_redemption api documentation</see>
+        /// </summary>
+        /// <param name="RemoveSubscriptionCouponRedemptionParams">Optional Parameters for the request</param>
+        /// <returns>
+        /// Coupon redemption deleted.
+        /// </returns>
+        /// <exception cref="Recurly.Errors.ApiError">Thrown when the request is invalid.</exception>
+        public Task<CouponRedemption> RemoveSubscriptionCouponRedemptionAsync(string subscriptionId, string couponRedemptionId, CancellationToken cancellationToken = default(CancellationToken), RequestOptions options = null)
+        {
+            var urlParams = new Dictionary<string, object> { { "subscription_id", subscriptionId }, { "coupon_redemption_id", couponRedemptionId } };
+            var url = this.InterpolatePath("/subscriptions/{subscription_id}/coupon_redemptions/{coupon_redemption_id}", urlParams);
+            return MakeRequestAsync<CouponRedemption>(Method.DELETE, url, null, null, options, cancellationToken);
+        }
 
 
 

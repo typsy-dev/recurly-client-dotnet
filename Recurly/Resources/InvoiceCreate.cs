@@ -32,6 +32,15 @@ namespace Recurly.Resources
         [JsonConverter(typeof(RecurlyStringEnumConverter))]
         public Constants.CollectionMethod? CollectionMethod { get; set; }
 
+        /// <value>
+        /// Controls whether credit invoices are automatically applied to new invoices.
+        /// The `mode` field determines the application behavior. When mode is `all`,
+        /// the optional `allowed_origins` array can restrict which credit invoice origins
+        /// are applied.
+        /// </value>
+        [JsonProperty("credit_application_policy")]
+        public CreditApplicationPolicy CreditApplicationPolicy { get; set; }
+
         /// <value>This will default to the Customer Notes text specified on the Invoice Settings for credit invoices. Specify customer notes to add or override Customer Notes on credit invoices.</value>
         [JsonProperty("credit_customer_notes")]
         public string CreditCustomerNotes { get; set; }
@@ -80,6 +89,11 @@ namespace Recurly.Resources
         /// <value>VAT Reverse Charge Notes only appear if you have EU VAT enabled or are using your own Avalara AvaTax account and the customer is in the EU, has a VAT number, and is in a different country than your own. This will default to the VAT Reverse Charge Notes text specified on the Tax Settings page in your Recurly admin, unless custom notes were created with the original subscription.</value>
         [JsonProperty("vat_reverse_charge_notes")]
         public string VatReverseChargeNotes { get; set; }
+
+        /// <value>Used by Vertex for tax calculations. Possible values are sale, rental, lease.</value>
+        [JsonProperty("vertex_transaction_type")]
+        [JsonConverter(typeof(RecurlyStringEnumConverter))]
+        public Constants.VertexTransactionType? VertexTransactionType { get; set; }
 
     }
 }

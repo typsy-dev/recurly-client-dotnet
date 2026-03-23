@@ -28,7 +28,11 @@ namespace Recurly.Resources
         [JsonProperty("address")]
         public Address Address { get; set; }
 
-        /// <value>Amazon billing agreement ID</value>
+        /// <value>The Adyen Risk Profile Reference ID is used to identify the risk profile for the payment method.</value>
+        [JsonProperty("adyen_risk_profile_reference_id")]
+        public string AdyenRiskProfileReferenceId { get; set; }
+
+        /// <value>Only supported on Amazon V1. For Amazon V2, use token_id with Recurly.js.</value>
         [JsonProperty("amazon_billing_agreement_id")]
         public string AmazonBillingAgreementId { get; set; }
 
@@ -162,7 +166,7 @@ namespace Recurly.Resources
         [JsonConverter(typeof(RecurlyStringEnumConverter))]
         public Constants.GatewayTransactionType? TransactionType { get; set; }
 
-        /// <value>The payment method type for a non-credit card based billing info. `bacs` and `becs` are the only accepted values.</value>
+        /// <value>The payment method type for a non-credit card based billing info. `bacs`, `becs`, `pix-automatico`, `mercadopago` are the only accepted values.</value>
         [JsonProperty("type")]
         [JsonConverter(typeof(RecurlyStringEnumConverter))]
         public Constants.AchType? Type { get; set; }
